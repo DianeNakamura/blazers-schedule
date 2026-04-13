@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4月 低学年スケジュール</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Noto Sans JP',sans-serif;background:#f0f4f8;color:#1a2b3c;padding:16px;-webkit-text-size-adjust:100%}
+  h1{font-size:1.3rem;font-weight:700;text-align:center;margin-bottom:6px;color:#1a5276}
+  .subtitle{text-align:center;font-size:0.8rem;color:#7f8c8d;margin-bottom:20px}
+  .tabs{display:flex;gap:0;margin-bottom:0;border-radius:12px 12px 0 0;overflow:hidden}
+  .tabs input[type="radio"]{display:none}
+  .tabs label{flex:1;text-align:center;padding:12px 6px;font-size:0.8rem;font-weight:600;cursor:pointer;background:#d5e8f0;color:#5a7a8a;transition:all .2s}
+  #tab1:checked~.tabs label[for="tab1"],#tab2:checked~.tabs label[for="tab2"],#tab3:checked~.tabs label[for="tab3"]{background:#fff;color:#1a5276;box-shadow:0 -2px 0 #2e86c1 inset}
+  .tab-content{display:none;background:#fff;border-radius:0 0 12px 12px;padding:12px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+  #tab1:checked~.tab-content.content1,#tab2:checked~.tab-content.content2,#tab3:checked~.tab-content.content3{display:block}
+  .card{border:1px solid #e8eef3;border-radius:10px;padding:12px;margin-bottom:10px;background:#fafcfe}
+  .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+  .date{font-weight:700;font-size:.95rem;color:#1a5276}
+  .badge{display:inline-block;background:#2e86c1;color:#fff;font-size:.7rem;font-weight:600;padding:2px 8px;border-radius:20px}
+  .badge.gameday{background:#e67e22}.badge.morimori{background:#8e44ad}
+  .venue{font-size:.8rem;color:#5a6c7d;margin-bottom:4px}
+  .available{font-size:.75rem;color:#7f8c8d;margin-bottom:6px;line-height:1.5}
+  .available span{display:inline-block;background:#eaf2f8;border-radius:4px;padding:1px 6px;margin:1px 2px;font-size:.72rem}
+  .assigned{display:flex;align-items:center;gap:6px;margin-top:6px;padding-top:6px;border-top:1px dashed #dce6f0}
+  .assigned-label{font-size:.7rem;color:#95a5a6}
+  .assigned-name{font-weight:700;font-size:.9rem;color:#27ae60}
+  .assigned-name.not-needed{color:#7f8c8d;font-weight:600}
+  .child-check{font-size:.72rem;color:#2980b9;margin-top:3px;padding-left:2px}
+  .child-check .yes{color:#27ae60}
+  .supporters{font-size:.72rem;color:#6c3483;margin-top:4px;padding-left:2px}
+  .supporters .sup-name{display:inline-block;background:#f4ecf7;border:1px solid #d2b4de;border-radius:4px;padding:1px 6px;margin:1px 2px;font-size:.68rem;color:#6c3483}
+  .supporters .sup-none{color:#bdc3c7;font-style:italic}
+  .participants-inline{margin-top:6px;padding:6px 8px;background:#f8f9fa;border-radius:6px;font-size:.72rem;line-height:1.8}
+  .participants-inline .p-label{font-size:.68rem;color:#95a5a6;font-weight:600;margin-bottom:2px}
+  .participants-inline span{display:inline-block;border-radius:4px;padding:1px 6px;margin:1px 1px;font-size:.68rem}
+  .kounen{margin-top:6px;padding:6px 8px;background:#fdf2e9;border-left:3px solid #e67e22;border-radius:0 6px 6px 0;font-size:.72rem;color:#7d5a3c;line-height:1.5}
+  .kounen-title{font-weight:600;font-size:.7rem;color:#e67e22;margin-bottom:2px}
+  .kounen span{display:inline-block;background:#fbeee6;border:1px solid #f0c8a0;border-radius:4px;padding:1px 6px;margin:1px 2px;font-size:.7rem}
+  .kounen-participants{font-size:.72rem;color:#b45f06;font-weight:600;margin-top:2px}
+  .memo{margin-top:6px;padding:6px 8px;background:#eaf7ef;border-left:3px solid #27ae60;border-radius:0 6px 6px 0;font-size:.72rem;color:#2d6a3f;line-height:1.5}
+  .memo-title{font-weight:600;font-size:.7rem;color:#27ae60;margin-bottom:2px}
+  .coach-table{width:100%;border-collapse:collapse;font-size:.82rem}
+  .coach-table th{text-align:left;padding:10px 8px;border-bottom:2px solid #2e86c1;color:#1a5276;font-weight:600}
+  .coach-table td{padding:9px 8px;border-bottom:1px solid #ecf0f1}
+  .coach-table tr:last-child td{border-bottom:none}
+  .coach-table .count{font-weight:700;color:#2e86c1;text-align:center;font-size:1rem}
+  .coach-table .dates{font-size:.72rem;color:#7f8c8d;line-height:1.5}
+  .legend{margin-top:16px;padding:10px;background:#fef9e7;border-radius:8px;font-size:.72rem;color:#7f8c8d;line-height:1.6}
+  .p-card{border:1px solid #e8eef3;border-radius:10px;padding:10px 12px;margin-bottom:8px;background:#fafcfe}
+  .p-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+  .p-date{font-weight:700;font-size:.85rem;color:#1a5276}
+  .p-venue{font-size:.72rem;color:#5a6c7d;margin-bottom:4px}
+  .p-grade-count{font-size:.72rem;margin-bottom:6px;font-weight:600}
+  .p-names{font-size:.75rem;color:#2c3e50;line-height:1.8}
+  .p-names span{display:inline-block;border-radius:4px;padding:2px 7px;margin:1px 2px;font-size:.72rem}
+  .g4{background:#f5e6f0;border:1px solid #d5a6c8;color:#8b3a72}
+  .g3{background:#d4efdf;border:1px solid #82e0aa;color:#1e8449}
+  .g2{background:#d6eaf8;border:1px solid #85c1e9;color:#1a5276}
+  .g1{background:#fdebd0;border:1px solid #f0b27a;color:#b9770e}
+  .grade-label{display:inline-block;border-radius:4px;padding:1px 6px;font-size:.68rem;font-weight:600}
+  .gl4{background:#f5e6f0;border:1px solid #d5a6c8;color:#8b3a72}
+  .gl3{background:#d4efdf;border:1px solid #82e0aa;color:#1e8449}
+  .gl2{background:#d6eaf8;border:1px solid #85c1e9;color:#1a5276}
+  .gl1{background:#fdebd0;border:1px solid #f0b27a;color:#b9770e}
+  .jishu-card{border:1px dashed #b0bec5;border-radius:10px;padding:10px 12px;margin-bottom:10px;background:#eceff1}
+  .jishu-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+  .jishu-title{font-weight:700;font-size:.85rem;color:#546e7a}
+  .jishu-badge{display:inline-block;background:#78909c;color:#fff;font-size:.65rem;font-weight:600;padding:2px 8px;border-radius:20px}
+  .jishu-venue{font-size:.72rem;color:#607d8b;margin-bottom:4px}
+  .jishu-note{font-size:.68rem;color:#90a4ae;margin-top:4px;font-style:italic}
+</style>
+</head>
+<body>
+<h1>⚽ 4月 低学年スケジュール</h1>
+<p class="subtitle">コーチ配置表（全12回）</p>
+<input type="radio" name="tab" id="tab1" checked><input type="radio" name="tab" id="tab2"><input type="radio" name="tab" id="tab3">
+<div class="tabs"><label for="tab1">📋 スケジュール</label><label for="tab2">👤 コーチ担当数</label><label for="tab3">👧 参加者一覧</label></div>
+
+<!-- TAB 1 -->
+<div class="tab-content content1">
+  <div class="card"><div class="card-header"><span class="date">① 4/1（水）</span><span class="badge">7名</span></div>
+    <div class="venue">🕕 18:00-19:30 ｜ 📍 柳北</div>
+    <div class="available">参加可能: <span>山科</span><span>中野秀則</span><span>ヨネクラ</span><span>西井</span></div>
+    <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name">中野秀則</span></div>
+    <div class="child-check">👦 子供参加: <span class="yes">中野日々 ◯</span></div>
+    <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl4">4年1</span> <span class="grade-label gl3">3年3</span> <span class="grade-label gl2">2年2</span> <span class="grade-label gl1">1年1</span></div><span class="g4">Misha jain</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">米倉のぞみ</span><span class="g2">西井あきのり</span><span class="g2">中野日々</span><span class="g1">久信田もとい</span></div>
+    <div class="supporters">🤝 サポーター（1名）: <span class="sup-name">中村ダイアン</span></div>
+    <div class="kounen"><div class="kounen-title">📌 同日の高学年 18:30-20:30 浅中</div><div class="kounen-participants">高学年 19名 + 中高生 8名 = 27名</div><span>SO ◯</span></div>
+  </div>
+  <div class="card"><div class="card-header"><span class="date">② 4/4（土）</span><span class="badge gameday">GameDay 6名</span></div>
+    <div class="venue">🕕 18:00-19:30 ｜ 📍 台東リバーサイドSC第1</div>
+    <div class="available">参加可能: <span>井上崇寛</span><span>牧てつや</span><span>あおき</span></div>
+    <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name">牧てつや</span></div>
+    <div class="child-check">👦 子供参加: <span class="yes">牧かいと ◯</span> <span class="yes">牧かるま ◯</span></div>
+    <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年5</span> <span class="grade-label gl1">1年1</span></div><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">内堀こう</span><span class="g3">いそみすず</span><span class="g3">牧かいと</span><span class="g1">牧かるま</span></div>
+    <div class="supporters">🤝 サポーター（1名）: <span class="sup-name">中村ダイアン</span></div>
+    <div class="kounen"><div class="kounen-title">📌 同日の高学年 GameDay 18:00-20:00 台東リバーサイドSC第1</div><div class="kounen-participants">高学年 9名 + 中高生 3名 = 12名</div><span>井上崇寛 ◯</span><span>えとう ◯</span><span>あおき ◯</span></div>
+  </div>
+  <div class="jishu-card"><div class="jishu-header"><span class="jishu-title">🏃 自主練 4/5（日）</span><span class="jishu-badge">低学年 4名</span></div>
+    <div class="jishu-venue">🕙 10:00-12:00 ｜ 📍 たなか ｜ 全学年対象・コーチ不要</div>
+    <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年2</span> <span class="grade-label gl2">2年1</span> <span class="grade-label gl1">1年1</span></div><span class="g3">中村れい</span><span class="g3">牧かいと</span><span class="g2">及川しゅん</span><span class="g1">牧かるま</span></div>
+    <div class="jishu-note">※ 高学年 0名 + 中高生 0名 = 0名 も参加</div></div>
+  <div class="card"><div class="card-header"><span class="date">③ 4/7（火）</span><span class="badge">12名</span></div>
+    <div class="venue">🕕 18:00-19:30 ｜ 📍 柳北</div>
+    <div class="available">参加可能: <span>山科</span><span>牧てつや</span></div>
+    <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name">牧てつや</span></div>
+    <div class="child-check">👦 子供参加: <span class="yes">牧かいと ◯</span> <span class="yes">牧かるま ◯</span></div>
+    <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年6</span> <span class="grade-label gl2">2年4</span> <span class="grade-label gl1">1年2</span></div><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">牧かいと</span><span class="g3">米倉のぞみ</span><span class="g3">清水けいいち</span><span class="g2">及川しゅん</span><span class="g2">のもとまひろ</span><span class="g2">千葉かずり</span><span class="g2">しおん</span><span class="g1">久信田もとい</span><span class="g1">牧かるま</span></div>
+    <div class="supporters">🤝 サポーター（3名）: <span class="sup-name">中村ダイアン</span><span class="sup-name">千葉潤一</span><span class="sup-name">野本周平</span></div>
+    <div class="kounen"><div class="kounen-title">📌 同日の高学年 19:30-21:00 柳北</div><div class="kounen-participants">高学年 17名 + 中高生 9名 = 26名</div><span>山科 ◯</span></div>
+  </div>
+  <div class="card"><div class="card-header"><span class="date">④ 4/8（水）</span><span class="badge">12名</span></div>
+    <div class="venue">🕕 18:00-19:30 ｜ 📍 柳北</div>
+    <div class="available">参加可能: <span>山科</span><span>中野秀則</span><span>牧てつや</span><span>西井</span></div>
+    <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name">中野秀則</span></div>
+    <div class="child-check">👦 子供参加: <span class="yes">中野日々 ◯</span></div>
+    <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl4">4年1</span> <span class="grade-label gl3">3年5</span> <span class="grade-label gl2">2年3</span> <span class="grade-label gl1">1年3</span></div><span class="g4">Misha jain</span><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">米倉のぞみ</span><span class="g3">Aadhya Singhal</span><span class="g2">西井あきのり</span><span class="g2">中野日々</span><span class="g2">濱名いと</span><span class="g1">久信田もとい</span><span class="g1">牧かるま</span><span class="g1">角野友基</span></div>
+    <div class="supporters">🤝 サポーター（3名）: <span class="sup-name">中村ダイアン</span><span class="sup-name">鵜飼美幸</span><span class="sup-name">くしんだきほ</span></div>
+    <div class="kounen"><div class="kounen-title">📌 同日の高学年 18:30-20:30 浅中</div><div class="kounen-participants">高学年 22名 + 中高生 16名 = 38名</div><span>SO ◯</span></div>
+  </div>
+  <div class="card"><div class="card-header"><span class="date">⑤ 4/10（金）</span><span class="badge">10名</span></div>
+    <div class="venue">🕕 18:00-19:30 ｜ 📍 育英小</div>
+    <div class="available">参加可能: <span>牧てつや</span><span>西井</span></div>
+    <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name">牧てつや</span></div>
+    <div class="child-check">👦 子供参加: <span class="yes">牧かいと ◯</span> <span class="yes">牧かるま ◯</span></div>
+    <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年4</span> <span class="grade-label gl2">2年5</span> <span class="grade-label gl1">1年1</span></div><span class="g3">中村れい</span><span class="g3">牧かいと</span><span class="g3">米倉のぞみ</span><span class="g3">清水けいいち</span><span class="g2">及川しゅん</span><span class="g2">のもとまひろ</span><span class="g2">中野日々</span><span class="g2">千葉かずり</span><span class="g2">並木だいち</span><span class="g1">牧かるま</span></div>
+    <div class="supporters">🤝 サポーター（2名）: <span class="sup-name">中村ダイアン</span><span class="sup-name">野本周平</span></div>
+    <div class="kounen"><div class="kounen-title">📌 同日の高学年 19:30-21:00 育英小</div><div class="kounen-participants">高学年 18名 + 中高生 6名 = 24名</div><span>えとう ◯</span><span>及川和馬 ◯</span></div>
+  </div>
+  <div class="jishu-card"><div class="jishu-header"><span class="jishu-title">🏃 自主練 4/12（日）</span><span class="jishu-badge">低学年 3名</span></div>
+    <div class="jishu-venue">🕐 13:30-16:30 ｜ 📍 たなか ｜ 全学年対象・コーチ不要</div>
+    <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年2</span> <span class="grade-label gl1">1年1</span></div><span class="g3">中村れい</span><span class="g3">牧かいと</span><span class="g1">牧かるま</span></div>
+    <div class="jishu-note">※ 高学年 0名 + 中高生 0名 = 0名 も参加</div></div>
+  <div class="card"><div class="card-header"><span class="date">⑥ 4/15（水）</span><span class="badge">16名</span></div>
+    <div class="venue">🕕 18:00-19:30 ｜ 📍 柳北</div>
+    <div class="available">参加可能: <span>及川和馬</span><span>中野秀則</span><span>牧てつや</span></div>
+    <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name">及川和馬 + 中野秀則</span></div>
+    <div class="child-check">👦 子供参加: <span class="yes">及川しゅん ◯</span> <span class="yes">中野日々 ◯</span></div>
+    <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl4">4年1</span> <span class="grade-label gl3">3年6</span> <span class="grade-label gl2">2年7</span> <span class="grade-label gl1">1年2</span></div><span class="g4">Misha jain</span><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">牧かいと</span><span class="g3">米倉のぞみ</span><span class="g3">Aadhya Singhal</span><span class="g2">及川しゅん</span><span class="g2">西井あきのり</span><span class="g2">のもとまひろ</span><span class="g2">中野日々</span><span class="g2">千葉かずり</span><span class="g2">しおん</span><span class="g2">濱名いと</span><span class="g1">久信田もとい</span><span class="g1">牧かるま</span></div>
+    <div class="supporters">🤝 サポーター（4名）: <span class="sup-name">中村ダイアン</span><span class="sup-name">くしんだきほ</span><span class="sup-name">千葉潤一</span><span class="sup-name">野本周平</span></div>
+    <div class="kounen"><div class="kounen-title">📌 同日の高学年 18:30-20:30 浅中</div><div class="kounen-participants">高学年 24名 + 中高生 12名 = 36名</div><span>SO ◯</span><span>ヨネクラ ◯</span></div>
+  </div>
+  <div class="card"><div class="card-header"><span class="date">⑦ 4/18（土）</span><span class="badge">10名</span></div>
+    <div class="venue">🕐 13:00-14:30 ｜ 📍 育英小</div>
+    <div class="available">参加可能: <span>井上崇寛</span><span>山科</span><span>及川和馬</span><span>中野秀則</span><span>ヨネクラ</span></div>
+    <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name">ヨネクラ</span></div>
+    <div class="child-check">👦 子供参加: <span class="yes">米倉のぞみ ◯</span></div>
+    <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年4</span> <span class="grade-label gl2">2年6</span></div><span class="g3">だいし</span><span class="g3">内堀こう</span><span class="g3">いそみすず</span><span class="g3">米倉のぞみ</span><span class="g2">及川しゅん</span><span class="g2">西井あきのり</span><span class="g2">のもとまひろ</span><span class="g2">いそむらちさ</span><span class="g2">中野日々</span><span class="g2">ますだあおい</span></div>
+    <div class="supporters">🤝 サポーター: <span class="sup-none">なし</span></div>
+    <div class="kounen"><div class="kounen-title">📌 同日の高学年 15:00-17:00 育英小</div><div class="kounen-participants">高学年 17名 + 中高生 3名 = 20名</div><span>井上崇寛 ◯</span><span>山科 ◯</span><span>及川和馬 ◯</span></div>
+  </div>
+  <div class="card"><div class="card-header"><span class="date">⑧ 4/20（月）</span><span class="badge">13名</span></div>
+    <div class="venue">🕕 18:00-19:30 ｜ 📍 柳北</div>
+    <div class="available">参加可能: <span>山科</span><span>及川和馬</span><span>中野秀則</span></div>
+    <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name">及川和馬</span></div>
+    <div class="child-check">👦 子供参加: <span class="yes">及川しゅん ◯</span></div>
+    <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl4">4年1</span> <span class="grade-label gl3">3年5</span> <span class="grade-label gl2">2年5</span> <span class="grade-label gl1">1年2</span></div><span class="g4">Misha jain</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">米倉のぞみ</span><span class="g3">清水けいいち</span><span class="g3">ミヤタエイト</span><span class="g2">及川しゅん</span><span class="g2">西井あきのり</span><span class="g2">のもとまひろ</span><span class="g2">いそむらちさ</span><span class="g2">中野日々</span><span class="g1">久信田もとい</span><span class="g1">角野友基</span></div>
+    <div class="supporters">🤝 サポーター（3名）: <span class="sup-name">中村ダイアン</span><span class="sup-name">くしんだきほ</span><span class="sup-name">野本周平</span></div>
+    <div class="kounen"><div class="kounen-title">📌 同日の高学年 19:30-21:00 柳北</div><div class="kounen-participants">高学年 20名 + 中高生 6名 = 26名</div><span>えとう ◯</span><span>シュン吉 ◯</span></div>
+  </div>
+  <div class="card"><div class="card-header"><span class="date">⑨ 4/24（金）</span><span class="badge">14名</span></div>
+    <div class="venue">🕕 18:00-19:30 ｜ 📍 育英小</div>
+    <div class="available">参加可能: <span>山科</span><span>中野秀則</span><span>牧てつや</span><span>ヨネクラ</span></div>
+    <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name">中野秀則 + ヨネクラ</span></div>
+    <div class="child-check">👦 子供参加: <span class="yes">中野日々 ◯</span> <span class="yes">米倉のぞみ ◯</span></div>
+    <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年6</span> <span class="grade-label gl2">2年6</span> <span class="grade-label gl1">1年2</span></div><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">牧かいと</span><span class="g3">米倉のぞみ</span><span class="g3">清水けいいち</span><span class="g2">及川しゅん</span><span class="g2">のもとまひろ</span><span class="g2">中野日々</span><span class="g2">千葉かずり</span><span class="g2">しおん</span><span class="g2">濱名いと</span><span class="g1">久信田もとい</span><span class="g1">牧かるま</span></div>
+    <div class="supporters">🤝 サポーター（1名）: <span class="sup-name">中村ダイアン</span></div>
+    <div class="kounen"><div class="kounen-title">📌 同日の高学年 19:30-21:00 育英小</div><div class="kounen-participants">高学年 19名 + 中高生 6名 = 25名</div><span>山科 ◯</span><span>ヨネクラ ◯</span></div>
+  </div>
+  <div class="card"><div class="card-header"><span class="date">⑩ 4/27（月）</span><span class="badge morimori">もりもり 9名</span></div>
+    <div class="venue">🕕 18:00-19:15 ｜ 📍 柳北</div>
+    <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name not-needed">コーチ不要</span></div>
+    <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年4</span> <span class="grade-label gl2">2年3</span> <span class="grade-label gl1">1年2</span></div><span class="g3">中村れい</span><span class="g3">米倉のぞみ</span><span class="g3">Aadhya Singhal</span><span class="g3">ミヤタエイト</span><span class="g2">いそむらちさ</span><span class="g2">中野日々</span><span class="g2">千葉かずり</span><span class="g1">久信田もとい</span><span class="g1">角野友基</span></div>
+    <div class="memo"><div class="memo-title">📝 Diane memo</div>もりもりの日にはコーチ不要。</div>
+    <div class="supporters">🤝 サポーター（1名）: <span class="sup-name">中村ダイアン</span></div>
+    <div class="kounen"><div class="kounen-title">📌 同日の高学年 もりもり 19:15-20:30 柳北</div><div class="kounen-participants">高学年 18名 + 中高生 3名 = 21名</div><span>シュン吉 ◯</span><span>ヨネクラ △</span></div>
+  </div>
+  <div class="card"><div class="card-header"><span class="date">⑪ 4/28（火）</span><span class="badge">15名</span></div>
+    <div class="venue">🕕 18:00-19:30 ｜ 📍 柳北</div>
+    <div class="available">参加可能: <span>山科</span><span>中野秀則</span><span>牧てつや</span><span>ヨネクラ</span></div>
+    <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name">ヨネクラ + 牧てつや</span></div>
+    <div class="child-check">👦 子供参加: <span class="yes">米倉のぞみ ◯</span> <span class="yes">牧かいと ◯</span> <span class="yes">牧かるま ◯</span></div>
+    <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年7</span> <span class="grade-label gl2">2年6</span> <span class="grade-label gl1">1年2</span></div><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">牧かいと</span><span class="g3">米倉のぞみ</span><span class="g3">清水けいいち</span><span class="g3">ミヤタエイト</span><span class="g2">及川しゅん</span><span class="g2">西井あきのり</span><span class="g2">のもとまひろ</span><span class="g2">中野日々</span><span class="g2">ますだあおい</span><span class="g2">濱名いと</span><span class="g1">久信田もとい</span><span class="g1">牧かるま</span></div>
+    <div class="supporters">🤝 サポーター（3名）: <span class="sup-name">中村ダイアン</span><span class="sup-name">くしんだきほ</span><span class="sup-name">野本周平</span></div>
+    <div class="kounen"><div class="kounen-title">📌 同日の高学年 19:30-21:00 柳北</div><div class="kounen-participants">高学年 19名 + 中高生 7名 = 26名</div><span>山科 ◯</span><span>ヨネクラ ◯</span></div>
+  </div>
+  <div class="card"><div class="card-header"><span class="date">⑫ 4/29（水-祝）</span><span class="badge">5名</span></div>
+    <div class="venue">🕘 9:00-10:30 ｜ 📍 たなか</div>
+    <div class="available">参加可能: <span>井上崇寛</span><span>牧てつや</span></div>
+    <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name">牧てつや</span></div>
+    <div class="child-check">👦 子供参加: <span class="yes">牧かいと ◯</span> <span class="yes">牧かるま ◯</span></div>
+    <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年4</span> <span class="grade-label gl1">1年1</span></div><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">内堀こう</span><span class="g3">牧かいと</span><span class="g1">牧かるま</span></div>
+    <div class="supporters">🤝 サポーター（1名）: <span class="sup-name">中村ダイアン</span></div>
+    <div class="kounen"><div class="kounen-title">📌 同日の高学年 18:30-20:30 浅中</div><div class="kounen-participants">高学年 15名 + 中高生 8名 = 23名</div><span>井上崇寛 ◯</span><span>SO ◯</span><span>牧信真 ◯</span></div>
+  </div>
+  <div class="jishu-card"><div class="jishu-header"><span class="jishu-title">🏃 自主練 4/29（水-祝）</span><span class="jishu-badge">低学年 5名</span></div>
+    <div class="jishu-venue">🕙 10:30-12:00 ｜ 📍 たなか ｜ 全学年対象・コーチ不要</div>
+    <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年4</span> <span class="grade-label gl1">1年1</span></div><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">内堀こう</span><span class="g3">牧かいと</span><span class="g1">牧かるま</span></div>
+    <div class="jishu-note">※ 高学年 15名 + 中高生 8名 = 23名 も参加</div></div>
+
+  <div class="legend">💡 参加可能 = 調整さんで◯のコーチ ／ 担当 = アサイン済みコーチ<br>👦 = アサインされたコーチの子供が参加しているか<br>📌 = 同日の高学年セッションの参加可能コーチ・参加者数を表示<br>📝 = Diane メモ ／ 🏃 = 自主練（コーチ不要・参考情報）<br><span class="grade-label gl4">4年</span> <span class="grade-label gl3">3年</span> <span class="grade-label gl2">2年</span> <span class="grade-label gl1">1年</span></div>
+</div>
+
+<!-- TAB 2 -->
+<div class="tab-content content2">
+  <table class="coach-table">
+    <thead><tr><th>コーチ</th><th style="text-align:center">回数</th><th>担当日</th></tr></thead>
+    <tbody>
+      <tr><td>牧てつや</td><td class="count">5</td><td class="dates">② 4/4（土） 台東リバーサイドSC第1<br>③ 4/7（火） 柳北<br>⑤ 4/10（金） 育英小<br>⑪ 4/28（火） 柳北<br>⑫ 4/29（水-祝） たなか</td></tr>
+      <tr><td>中野秀則</td><td class="count">4</td><td class="dates">① 4/1（水） 柳北<br>④ 4/8（水） 柳北<br>⑥ 4/15（水） 柳北<br>⑨ 4/24（金） 育英小</td></tr>
+      <tr><td>ヨネクラ</td><td class="count">3</td><td class="dates">⑦ 4/18（土） 育英小<br>⑨ 4/24（金） 育英小<br>⑪ 4/28（火） 柳北</td></tr>
+      <tr><td>及川和馬</td><td class="count">2</td><td class="dates">⑥ 4/15（水） 柳北<br>⑧ 4/20（月） 柳北</td></tr>
+      <tr style="background:#f0f0f0"><td style="color:#7f8c8d;font-weight:600">コーチ不要</td><td class="count" style="color:#7f8c8d">-</td><td class="dates" style="color:#7f8c8d">⑩ 4/27（月） もりもり</td></tr>
+    </tbody>
+  </table>
+  <div class="legend">💡 もりもりの日にはコーチ不要</div>
+</div>
+
+<!-- TAB 3 -->
+<div class="tab-content content3">
+  <div class="p-card"><div class="p-card-header"><span class="p-date">① 4/1（水）</span><span class="badge">7名</span></div>
+    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 柳北 ｜ 担当: 中野秀則</div>
+    <div class="p-grade-count"><span class="grade-label gl4">4年 1名</span> <span class="grade-label gl3">3年 3名</span> <span class="grade-label gl2">2年 2名</span> <span class="grade-label gl1">1年 1名</span></div>
+    <div class="p-names"><span class="g4">Misha jain</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">米倉のぞみ</span><span class="g2">西井あきのり</span><span class="g2">中野日々</span><span class="g1">久信田もとい</span></div></div>
+  <div class="p-card"><div class="p-card-header"><span class="p-date">② 4/4（土） GameDay</span><span class="badge gameday">6名</span></div>
+    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 台東リバーサイドSC第1 ｜ 担当: 牧てつや</div>
+    <div class="p-grade-count"><span class="grade-label gl3">3年 5名</span> <span class="grade-label gl1">1年 1名</span></div>
+    <div class="p-names"><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">内堀こう</span><span class="g3">いそみすず</span><span class="g3">牧かいと</span><span class="g1">牧かるま</span></div></div>
+  <div class="p-card"><div class="p-card-header"><span class="p-date">③ 4/7（火）</span><span class="badge">12名</span></div>
+    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 柳北 ｜ 担当: 牧てつや</div>
+    <div class="p-grade-count"><span class="grade-label gl3">3年 6名</span> <span class="grade-label gl2">2年 4名</span> <span class="grade-label gl1">1年 2名</span></div>
+    <div class="p-names"><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">牧かいと</span><span class="g3">米倉のぞみ</span><span class="g3">清水けいいち</span><span class="g2">及川しゅん</span><span class="g2">のもとまひろ</span><span class="g2">千葉かずり</span><span class="g2">しおん</span><span class="g1">久信田もとい</span><span class="g1">牧かるま</span></div></div>
+  <div class="p-card"><div class="p-card-header"><span class="p-date">④ 4/8（水）</span><span class="badge">12名</span></div>
+    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 柳北 ｜ 担当: 中野秀則</div>
+    <div class="p-grade-count"><span class="grade-label gl4">4年 1名</span> <span class="grade-label gl3">3年 5名</span> <span class="grade-label gl2">2年 3名</span> <span class="grade-label gl1">1年 3名</span></div>
+    <div class="p-names"><span class="g4">Misha jain</span><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">米倉のぞみ</span><span class="g3">Aadhya Singhal</span><span class="g2">西井あきのり</span><span class="g2">中野日々</span><span class="g2">濱名いと</span><span class="g1">久信田もとい</span><span class="g1">牧かるま</span><span class="g1">角野友基</span></div></div>
+  <div class="p-card"><div class="p-card-header"><span class="p-date">⑤ 4/10（金）</span><span class="badge">10名</span></div>
+    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 育英小 ｜ 担当: 牧てつや</div>
+    <div class="p-grade-count"><span class="grade-label gl3">3年 4名</span> <span class="grade-label gl2">2年 5名</span> <span class="grade-label gl1">1年 1名</span></div>
+    <div class="p-names"><span class="g3">中村れい</span><span class="g3">牧かいと</span><span class="g3">米倉のぞみ</span><span class="g3">清水けいいち</span><span class="g2">及川しゅん</span><span class="g2">のもとまひろ</span><span class="g2">中野日々</span><span class="g2">千葉かずり</span><span class="g2">並木だいち</span><span class="g1">牧かるま</span></div></div>
+  <div class="p-card"><div class="p-card-header"><span class="p-date">⑥ 4/15（水）</span><span class="badge">16名</span></div>
+    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 柳北 ｜ 担当: 及川和馬 + 中野秀則</div>
+    <div class="p-grade-count"><span class="grade-label gl4">4年 1名</span> <span class="grade-label gl3">3年 6名</span> <span class="grade-label gl2">2年 7名</span> <span class="grade-label gl1">1年 2名</span></div>
+    <div class="p-names"><span class="g4">Misha jain</span><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">牧かいと</span><span class="g3">米倉のぞみ</span><span class="g3">Aadhya Singhal</span><span class="g2">及川しゅん</span><span class="g2">西井あきのり</span><span class="g2">のもとまひろ</span><span class="g2">中野日々</span><span class="g2">千葉かずり</span><span class="g2">しおん</span><span class="g2">濱名いと</span><span class="g1">久信田もとい</span><span class="g1">牧かるま</span></div></div>
+  <div class="p-card"><div class="p-card-header"><span class="p-date">⑦ 4/18（土）</span><span class="badge">10名</span></div>
+    <div class="p-venue">🕐 13:00-14:30 ｜ 📍 育英小 ｜ 担当: ヨネクラ</div>
+    <div class="p-grade-count"><span class="grade-label gl3">3年 4名</span> <span class="grade-label gl2">2年 6名</span></div>
+    <div class="p-names"><span class="g3">だいし</span><span class="g3">内堀こう</span><span class="g3">いそみすず</span><span class="g3">米倉のぞみ</span><span class="g2">及川しゅん</span><span class="g2">西井あきのり</span><span class="g2">のもとまひろ</span><span class="g2">いそむらちさ</span><span class="g2">中野日々</span><span class="g2">ますだあおい</span></div></div>
+  <div class="p-card"><div class="p-card-header"><span class="p-date">⑧ 4/20（月）</span><span class="badge">13名</span></div>
+    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 柳北 ｜ 担当: 及川和馬</div>
+    <div class="p-grade-count"><span class="grade-label gl4">4年 1名</span> <span class="grade-label gl3">3年 5名</span> <span class="grade-label gl2">2年 5名</span> <span class="grade-label gl1">1年 2名</span></div>
+    <div class="p-names"><span class="g4">Misha jain</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">米倉のぞみ</span><span class="g3">清水けいいち</span><span class="g3">ミヤタエイト</span><span class="g2">及川しゅん</span><span class="g2">西井あきのり</span><span class="g2">のもとまひろ</span><span class="g2">いそむらちさ</span><span class="g2">中野日々</span><span class="g1">久信田もとい</span><span class="g1">角野友基</span></div></div>
+  <div class="p-card"><div class="p-card-header"><span class="p-date">⑨ 4/24（金）</span><span class="badge">14名</span></div>
+    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 育英小 ｜ 担当: 中野秀則 + ヨネクラ</div>
+    <div class="p-grade-count"><span class="grade-label gl3">3年 6名</span> <span class="grade-label gl2">2年 6名</span> <span class="grade-label gl1">1年 2名</span></div>
+    <div class="p-names"><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">牧かいと</span><span class="g3">米倉のぞみ</span><span class="g3">清水けいいち</span><span class="g2">及川しゅん</span><span class="g2">のもとまひろ</span><span class="g2">中野日々</span><span class="g2">千葉かずり</span><span class="g2">しおん</span><span class="g2">濱名いと</span><span class="g1">久信田もとい</span><span class="g1">牧かるま</span></div></div>
+  <div class="p-card"><div class="p-card-header"><span class="p-date">⑩ 4/27（月） もりもり</span><span class="badge morimori">9名</span></div>
+    <div class="p-venue">🕕 18:00-19:15 ｜ 📍 柳北 ｜ コーチ不要</div>
+    <div class="p-grade-count"><span class="grade-label gl3">3年 4名</span> <span class="grade-label gl2">2年 3名</span> <span class="grade-label gl1">1年 2名</span></div>
+    <div class="p-names"><span class="g3">中村れい</span><span class="g3">米倉のぞみ</span><span class="g3">Aadhya Singhal</span><span class="g3">ミヤタエイト</span><span class="g2">いそむらちさ</span><span class="g2">中野日々</span><span class="g2">千葉かずり</span><span class="g1">久信田もとい</span><span class="g1">角野友基</span></div></div>
+  <div class="p-card"><div class="p-card-header"><span class="p-date">⑪ 4/28（火）</span><span class="badge">15名</span></div>
+    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 柳北 ｜ 担当: ヨネクラ + 牧てつや</div>
+    <div class="p-grade-count"><span class="grade-label gl3">3年 7名</span> <span class="grade-label gl2">2年 6名</span> <span class="grade-label gl1">1年 2名</span></div>
+    <div class="p-names"><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">牧かいと</span><span class="g3">米倉のぞみ</span><span class="g3">清水けいいち</span><span class="g3">ミヤタエイト</span><span class="g2">及川しゅん</span><span class="g2">西井あきのり</span><span class="g2">のもとまひろ</span><span class="g2">中野日々</span><span class="g2">ますだあおい</span><span class="g2">濱名いと</span><span class="g1">久信田もとい</span><span class="g1">牧かるま</span></div></div>
+  <div class="p-card"><div class="p-card-header"><span class="p-date">⑫ 4/29（水-祝）</span><span class="badge">5名</span></div>
+    <div class="p-venue">🕘 9:00-10:30 ｜ 📍 たなか ｜ 担当: 牧てつや</div>
+    <div class="p-grade-count"><span class="grade-label gl3">3年 4名</span> <span class="grade-label gl1">1年 1名</span></div>
+    <div class="p-names"><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">内堀こう</span><span class="g3">牧かいと</span><span class="g1">牧かるま</span></div></div>
+
+  <div class="legend"><span class="grade-label gl4">4年生</span> <span class="grade-label gl3">3年生</span> <span class="grade-label gl2">2年生</span> <span class="grade-label gl1">1年生</span> で色分け表示</div>
+</div>
+
+</body>
+</html>
