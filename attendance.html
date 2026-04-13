@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="出席表">
+<title>4/27 もりもり 出席表</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Noto Sans JP',sans-serif;background:#f0f4f8;color:#1a2b3c;padding:12px;-webkit-text-size-adjust:100%}
+  h1{font-size:1.2rem;font-weight:700;text-align:center;color:#8e44ad;margin-bottom:4px}
+  .subtitle{text-align:center;font-size:.78rem;color:#7f8c8d;margin-bottom:16px}
+  .card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 2px 12px rgba(0,0,0,.08);margin-bottom:12px}
+  .section-title{font-size:.85rem;font-weight:700;color:#1a5276;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #2e86c1}
+  table{width:100%;border-collapse:collapse}
+  th{text-align:left;font-size:.72rem;color:#95a5a6;padding:6px 4px;border-bottom:1px solid #ecf0f1}
+  td{padding:8px 4px;border-bottom:1px solid #f0f3f5;vertical-align:middle}
+  .name-cell{font-weight:600;font-size:.85rem}
+  .grade{display:inline-block;border-radius:4px;padding:1px 6px;font-size:.68rem;font-weight:600;margin-right:4px}
+  .g3{background:#d4efdf;border:1px solid #82e0aa;color:#1e8449}
+  .g2{background:#d6eaf8;border:1px solid #85c1e9;color:#1a5276}
+  .g1{background:#fdebd0;border:1px solid #f0b27a;color:#b9770e}
+  .g4{background:#f5e6f0;border:1px solid #d5a6c8;color:#8b3a72}
+  .status-btns{display:flex;gap:6px}
+  .status-btn{width:44px;height:38px;border-radius:8px;border:2px solid #ddd;background:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;-webkit-tap-highlight-color:transparent}
+  .status-btn.present{border-color:#27ae60;background:#eafaf1;color:#27ae60}
+  .status-btn.absent{border-color:#e74c3c;background:#fdecea;color:#e74c3c}
+  .status-btn:active{transform:scale(0.92)}
+  .walkin-section{margin-top:16px}
+  .walkin-row{display:flex;gap:8px;margin-bottom:8px;align-items:center}
+  .walkin-input{flex:1;height:38px;border:2px solid #ddd;border-radius:8px;padding:0 10px;font-size:.85rem;font-family:'Noto Sans JP',sans-serif}
+  .walkin-input:focus{border-color:#2e86c1;outline:none}
+  .add-btn{height:38px;padding:0 14px;border:none;border-radius:8px;background:#2e86c1;color:#fff;font-size:.8rem;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .add-btn:active{background:#1a5276}
+  .remove-btn{width:32px;height:38px;border:none;border-radius:8px;background:#e74c3c;color:#fff;font-size:1rem;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .summary{margin-top:16px;padding:12px;background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+  .summary-title{font-size:.85rem;font-weight:700;color:#1a5276;margin-bottom:8px}
+  .summary-counts{display:flex;gap:12px;margin-bottom:12px;font-size:.85rem}
+  .count-item{display:flex;align-items:center;gap:4px}
+  .count-num{font-weight:700;font-size:1.1rem}
+  .count-present{color:#27ae60}
+  .count-absent{color:#e74c3c}
+  .count-walkin{color:#2e86c1}
+  .line-btn{width:100%;padding:14px;border:none;border-radius:10px;background:#06c755;color:#fff;font-size:.95rem;font-weight:700;cursor:pointer;-webkit-tap-highlight-color:transparent;margin-top:8px}
+  .line-btn:active{background:#05a848}
+  .reset-btn{width:100%;padding:10px;border:2px solid #e74c3c;border-radius:10px;background:#fff;color:#e74c3c;font-size:.8rem;font-weight:600;cursor:pointer;margin-top:8px;-webkit-tap-highlight-color:transparent}
+  .timestamp{text-align:center;font-size:.68rem;color:#bdc3c7;margin-top:12px}
+</style>
+</head>
+<body>
+
+<h1>⚽ 4/27 もりもり 出席表</h1>
+<p class="subtitle">低学年 外部コーチ ｜ 18:00-19:15 ｜ 柳北</p>
+
+<div class="card">
+  <div class="section-title">申込者（9名）</div>
+  <table>
+    <thead><tr><th>名前</th><th style="text-align:center;width:110px">出欠</th></tr></thead>
+    <tbody id="members">
+      <tr data-name="中村れい" data-grade="3">
+        <td class="name-cell"><span class="grade g3">3年</span>中村れい</td>
+        <td><div class="status-btns"><button class="status-btn" onclick="toggle(this,'present')" data-status="">⭕</button><button class="status-btn" onclick="toggle(this,'absent')" data-status="">✕</button></div></td>
+      </tr>
+      <tr data-name="米倉のぞみ" data-grade="3">
+        <td class="name-cell"><span class="grade g3">3年</span>米倉のぞみ</td>
+        <td><div class="status-btns"><button class="status-btn" onclick="toggle(this,'present')" data-status="">⭕</button><button class="status-btn" onclick="toggle(this,'absent')" data-status="">✕</button></div></td>
+      </tr>
+      <tr data-name="Aadhya Singhal" data-grade="3">
+        <td class="name-cell"><span class="grade g3">3年</span>Aadhya Singhal</td>
+        <td><div class="status-btns"><button class="status-btn" onclick="toggle(this,'present')" data-status="">⭕</button><button class="status-btn" onclick="toggle(this,'absent')" data-status="">✕</button></div></td>
+      </tr>
+      <tr data-name="ミヤタエイト" data-grade="3">
+        <td class="name-cell"><span class="grade g3">3年</span>ミヤタエイト</td>
+        <td><div class="status-btns"><button class="status-btn" onclick="toggle(this,'present')" data-status="">⭕</button><button class="status-btn" onclick="toggle(this,'absent')" data-status="">✕</button></div></td>
+      </tr>
+      <tr data-name="いそむらちさ" data-grade="2">
+        <td class="name-cell"><span class="grade g2">2年</span>いそむらちさ</td>
+        <td><div class="status-btns"><button class="status-btn" onclick="toggle(this,'present')" data-status="">⭕</button><button class="status-btn" onclick="toggle(this,'absent')" data-status="">✕</button></div></td>
+      </tr>
+      <tr data-name="中野日々" data-grade="2">
+        <td class="name-cell"><span class="grade g2">2年</span>中野日々</td>
+        <td><div class="status-btns"><button class="status-btn" onclick="toggle(this,'present')" data-status="">⭕</button><button class="status-btn" onclick="toggle(this,'absent')" data-status="">✕</button></div></td>
+      </tr>
+      <tr data-name="千葉かずり" data-grade="2">
+        <td class="name-cell"><span class="grade g2">2年</span>千葉かずり</td>
+        <td><div class="status-btns"><button class="status-btn" onclick="toggle(this,'present')" data-status="">⭕</button><button class="status-btn" onclick="toggle(this,'absent')" data-status="">✕</button></div></td>
+      </tr>
+      <tr data-name="久信田もとい" data-grade="1">
+        <td class="name-cell"><span class="grade g1">1年</span>久信田もとい</td>
+        <td><div class="status-btns"><button class="status-btn" onclick="toggle(this,'present')" data-status="">⭕</button><button class="status-btn" onclick="toggle(this,'absent')" data-status="">✕</button></div></td>
+      </tr>
+      <tr data-name="角野友基" data-grade="1">
+        <td class="name-cell"><span class="grade g1">1年</span>角野友基</td>
+        <td><div class="status-btns"><button class="status-btn" onclick="toggle(this,'present')" data-status="">⭕</button><button class="status-btn" onclick="toggle(this,'absent')" data-status="">✕</button></div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card walkin-section">
+  <div class="section-title">飛び込み参加</div>
+  <div id="walkin-list"></div>
+  <div class="walkin-row">
+    <input type="text" id="walkin-name" class="walkin-input" placeholder="名前を入力">
+    <button class="add-btn" onclick="addWalkin()">追加</button>
+  </div>
+</div>
+
+<div class="summary" id="summary">
+  <div class="summary-title">集計</div>
+  <div class="summary-counts">
+    <div class="count-item"><span class="count-present">⭕</span><span class="count-num count-present" id="count-present">0</span>名</div>
+    <div class="count-item"><span class="count-absent">✕</span><span class="count-num count-absent" id="count-absent">0</span>名</div>
+    <div class="count-item"><span class="count-walkin">飛込</span><span class="count-num count-walkin" id="count-walkin">0</span>名</div>
+  </div>
+  <button class="line-btn" onclick="sendToLine()">📱 LINEで送信</button>
+  <button class="reset-btn" onclick="resetAll()">リセット</button>
+</div>
+
+<div class="timestamp" id="timestamp"></div>
+
+<script>
+function toggle(btn, type) {
+  const row = btn.closest('.status-btns');
+  const buttons = row.querySelectorAll('.status-btn');
+
+  // If already selected, deselect
+  if (btn.classList.contains(type)) {
+    btn.classList.remove(type);
+    btn.dataset.status = '';
+  } else {
+    // Clear both, then set
+    buttons.forEach(b => { b.classList.remove('present','absent'); b.dataset.status = ''; });
+    btn.classList.add(type);
+    btn.dataset.status = type;
+  }
+  updateCounts();
+  saveState();
+}
+
+function addWalkin() {
+  const input = document.getElementById('walkin-name');
+  const name = input.value.trim();
+  if (!name) return;
+
+  const list = document.getElementById('walkin-list');
+  const row = document.createElement('div');
+  row.className = 'walkin-row';
+  row.dataset.name = name;
+  row.innerHTML = `
+    <span style="flex:1;font-weight:600;font-size:.85rem">${name}</span>
+    <button class="remove-btn" onclick="removeWalkin(this)">✕</button>
+  `;
+  list.appendChild(row);
+  input.value = '';
+  updateCounts();
+  saveState();
+}
+
+function removeWalkin(btn) {
+  btn.parentElement.remove();
+  updateCounts();
+  saveState();
+}
+
+function updateCounts() {
+  let present = 0, absent = 0;
+  document.querySelectorAll('#members .status-btn').forEach(btn => {
+    if (btn.dataset.status === 'present') present++;
+    if (btn.dataset.status === 'absent') absent++;
+  });
+  const walkin = document.querySelectorAll('#walkin-list .walkin-row').length;
+
+  document.getElementById('count-present').textContent = present + walkin;
+  document.getElementById('count-absent').textContent = absent;
+  document.getElementById('count-walkin').textContent = walkin;
+  document.getElementById('timestamp').textContent = '最終更新: ' + new Date().toLocaleString('ja-JP');
+}
+
+function generateText() {
+  const lines = [];
+  const now = new Date().toLocaleString('ja-JP');
+  lines.push('⚽ 4/27 もりもり 低学年 出席結果');
+  lines.push('━━━━━━━━━━━━━━━━');
+
+  // Present
+  const presentNames = [];
+  const absentNames = [];
+  const unmarked = [];
+  document.querySelectorAll('#members tr').forEach(row => {
+    const name = row.dataset.name;
+    const grade = row.dataset.grade;
+    const btns = row.querySelectorAll('.status-btn');
+    let status = '';
+    btns.forEach(b => { if (b.dataset.status) status = b.dataset.status; });
+
+    const label = `${grade}年 ${name}`;
+    if (status === 'present') presentNames.push(label);
+    else if (status === 'absent') absentNames.push(label);
+    else unmarked.push(label);
+  });
+
+  const walkinNames = [];
+  document.querySelectorAll('#walkin-list .walkin-row').forEach(row => {
+    walkinNames.push(row.dataset.name);
+  });
+
+  const totalPresent = presentNames.length + walkinNames.length;
+
+  lines.push('');
+  lines.push(`⭕ 出席: ${totalPresent}名`);
+  presentNames.forEach(n => lines.push(`  ${n}`));
+  walkinNames.forEach(n => lines.push(`  ${n}（飛び込み）`));
+
+  if (absentNames.length) {
+    lines.push('');
+    lines.push(`✕ 欠席: ${absentNames.length}名`);
+    absentNames.forEach(n => lines.push(`  ${n}`));
+  }
+
+  if (unmarked.length) {
+    lines.push('');
+    lines.push(`未確認: ${unmarked.length}名`);
+    unmarked.forEach(n => lines.push(`  ${n}`));
+  }
+
+  lines.push('');
+  lines.push(`合計出席: ${totalPresent}名（申込${presentNames.length} + 飛込${walkinNames.length}）`);
+  lines.push(`記録: ${now}`);
+
+  return lines.join('\n');
+}
+
+function sendToLine() {
+  const text = generateText();
+  const encoded = encodeURIComponent(text);
+  // Try LINE URL scheme
+  const lineUrl = `https://line.me/R/share?text=${encoded}`;
+  window.open(lineUrl, '_blank');
+}
+
+// Save/restore state (localStorage)
+function saveState() {
+  const state = {};
+  state.members = {};
+  document.querySelectorAll('#members tr').forEach(row => {
+    const name = row.dataset.name;
+    const btns = row.querySelectorAll('.status-btn');
+    let status = '';
+    btns.forEach(b => { if (b.dataset.status) status = b.dataset.status; });
+    state.members[name] = status;
+  });
+  state.walkins = [];
+  document.querySelectorAll('#walkin-list .walkin-row').forEach(row => {
+    state.walkins.push(row.dataset.name);
+  });
+  localStorage.setItem('attendance_0427', JSON.stringify(state));
+}
+
+function restoreState() {
+  const saved = localStorage.getItem('attendance_0427');
+  if (!saved) return;
+  const state = JSON.parse(saved);
+
+  // Restore member statuses
+  if (state.members) {
+    document.querySelectorAll('#members tr').forEach(row => {
+      const name = row.dataset.name;
+      const status = state.members[name];
+      if (status) {
+        const btns = row.querySelectorAll('.status-btn');
+        btns.forEach(b => {
+          if ((status === 'present' && b.textContent.includes('⭕')) ||
+              (status === 'absent' && b.textContent.includes('✕'))) {
+            b.classList.add(status);
+            b.dataset.status = status;
+          }
+        });
+      }
+    });
+  }
+
+  // Restore walkins
+  if (state.walkins) {
+    state.walkins.forEach(name => {
+      const input = document.getElementById('walkin-name');
+      input.value = name;
+      addWalkin();
+    });
+  }
+
+  updateCounts();
+}
+
+function resetAll() {
+  if (!confirm('全てリセットしますか？')) return;
+  document.querySelectorAll('.status-btn').forEach(b => {
+    b.classList.remove('present','absent');
+    b.dataset.status = '';
+  });
+  document.getElementById('walkin-list').innerHTML = '';
+  localStorage.removeItem('attendance_0427');
+  updateCounts();
+}
+
+// Init
+restoreState();
+updateCounts();
+</script>
+</body>
+</html>
