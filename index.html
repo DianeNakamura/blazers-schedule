@@ -13,10 +13,10 @@
   .subtitle{text-align:center;font-size:0.8rem;color:#7f8c8d;margin-bottom:20px}
   .tabs{display:flex;gap:0;margin-bottom:0;border-radius:12px 12px 0 0;overflow:hidden}
   .tabs input[type="radio"]{display:none}
-  .tabs label{flex:1;text-align:center;padding:12px 6px;font-size:0.8rem;font-weight:600;cursor:pointer;background:#d5e8f0;color:#5a7a8a;transition:all .2s}
-  #tab1:checked~.tabs label[for="tab1"],#tab2:checked~.tabs label[for="tab2"],#tab3:checked~.tabs label[for="tab3"]{background:#fff;color:#1a5276;box-shadow:0 -2px 0 #2e86c1 inset}
+  .tabs label{flex:1;text-align:center;padding:12px 4px;font-size:0.75rem;font-weight:600;cursor:pointer;background:#d5e8f0;color:#5a7a8a;transition:all .2s}
+  #tab1:checked~.tabs label[for="tab1"],#tab2:checked~.tabs label[for="tab2"],#tab3:checked~.tabs label[for="tab3"],#tab4:checked~.tabs label[for="tab4"]{background:#fff;color:#1a5276;box-shadow:0 -2px 0 #2e86c1 inset}
   .tab-content{display:none;background:#fff;border-radius:0 0 12px 12px;padding:12px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
-  #tab1:checked~.tab-content.content1,#tab2:checked~.tab-content.content2,#tab3:checked~.tab-content.content3{display:block}
+  #tab1:checked~.tab-content.content1,#tab2:checked~.tab-content.content2,#tab3:checked~.tab-content.content3,#tab4:checked~.tab-content.content4{display:block}
   .card{border:1px solid #e8eef3;border-radius:10px;padding:12px;margin-bottom:10px;background:#fafcfe}
   .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
   .date{font-weight:700;font-size:.95rem;color:#1a5276}
@@ -74,13 +74,40 @@
   .jishu-note{font-size:.68rem;color:#90a4ae;margin-top:4px;font-style:italic}
   .diff-badge{display:inline-block;background:#e74c3c;color:#fff;font-size:.6rem;font-weight:600;padding:1px 6px;border-radius:10px;margin-left:6px;vertical-align:middle}
   .diff-detail{margin-top:4px;padding:4px 8px;background:#fef0f0;border-left:3px solid #e74c3c;border-radius:0 6px 6px 0;font-size:.68rem;color:#c0392b;line-height:1.5}
+  /* Team builder (tab4) */
+  .tb-row{display:grid;grid-template-columns:1fr 80px 70px;gap:6px;align-items:center;margin-top:6px}
+  .tb-input{padding:8px 10px;border:1px solid #cdd5dc;border-radius:8px;font-size:.85rem;background:#fff;width:100%}
+  .tb-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .tb-btn{padding:8px 12px;border:none;border-radius:8px;font-size:.78rem;font-weight:600;cursor:pointer;color:#fff;background:#3498db;white-space:nowrap}
+  .tb-btn.add{background:#27ae60}.tb-btn.balance{background:#9b59b6}.tb-btn.copy{background:#16a085}.tb-btn.reset{background:#e74c3c}.tb-btn.team-add{background:#34495e}
+  .tb-hint{font-size:.7rem;color:#7f8c8d;margin-top:6px;line-height:1.4}
+  .tb-pool,.tb-team{background:#fafcfe;border:1px solid #e8eef3;border-radius:10px;padding:10px;margin-bottom:8px;cursor:pointer}
+  .tb-pool{background:#f8f9fa}
+  .tb-pool.target,.tb-team.target{border-color:#3498db;background:#eef7fc}
+  .tb-team-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid #ecf0f1}
+  .tb-team-title{font-weight:700;color:#1a5276;font-size:.9rem}
+  .tb-team-meta{font-size:.7rem;color:#7f8c8d;margin-left:6px}
+  .tb-team-remove{background:none;border:none;color:#bdc3c7;font-size:1rem;cursor:pointer;padding:2px 8px;line-height:1}
+  .tb-team-remove:hover{color:#e74c3c}
+  .tb-names{display:flex;flex-wrap:wrap;gap:4px;min-height:32px;align-content:flex-start}
+  .tb-name{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:16px;font-size:.78rem;cursor:pointer;user-select:none}
+  .tb-name.selected{box-shadow:0 0 0 3px #3498db,0 2px 4px rgba(0,0,0,.15)}
+  .tb-grade-tag{font-size:.65rem;font-weight:700;padding:0 4px;border-radius:8px;background:rgba(0,0,0,.08)}
+  .tb-empty{font-size:.7rem;color:#bdc3c7;font-style:italic;padding:6px}
+  .tb-action-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #d5dbe0;box-shadow:0 -4px 12px rgba(0,0,0,.1);padding:10px 12px;display:none;z-index:100;max-height:40vh;overflow-y:auto}
+  .tb-action-bar.show{display:block}
+  .tb-action-bar-title{font-size:.78rem;color:#1a5276;font-weight:700;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+  .tb-action-bar-close{background:none;border:none;color:#95a5a6;font-size:1.1rem;cursor:pointer;padding:0 6px}
+  .tb-action-bar-buttons{display:flex;gap:6px;flex-wrap:wrap}
+  .tb-move-btn{flex:1 1 auto;min-width:90px;padding:10px 12px;border:none;border-radius:8px;font-size:.78rem;font-weight:600;cursor:pointer;color:#fff;background:#3498db}
+  .tb-move-btn.pool{background:#7f8c8d}
 </style>
 </head>
 <body>
 <h1>🏀 4月 低学年スケジュール</h1>
-<p class="subtitle">コーチ配置表（全12回）｜ 更新: 2026/04/28 10:45</p>
-<input type="radio" name="tab" id="tab1" checked><input type="radio" name="tab" id="tab2"><input type="radio" name="tab" id="tab3">
-<div class="tabs"><label for="tab1">📋 スケジュール</label><label for="tab2">👤 コーチ担当数</label><label for="tab3">👧 参加者一覧</label></div>
+<p class="subtitle">コーチ配置表（全12回）｜ 更新: 2026/04/28 12:48</p>
+<input type="radio" name="tab" id="tab1" checked><input type="radio" name="tab" id="tab2"><input type="radio" name="tab" id="tab3"><input type="radio" name="tab" id="tab4">
+<div class="tabs"><label for="tab1">📋 スケジュール</label><label for="tab2">👤 コーチ担当数</label><label for="tab3">👧 参加者一覧</label><label for="tab4">🏆 チーム分け</label></div>
 
 <!-- TAB 1 -->
 <div class="tab-content content1">
@@ -274,6 +301,264 @@
     <div class="p-names"><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">内堀こう</span><span class="g3">いそみすず</span><span class="g3">牧かいと</span><span class="g2">並木だいち</span><span class="g2">かじはら ゆきのじょう</span><span class="g1">牧かるま</span></div></div>
 
   <div class="legend"><span class="grade-label gl4">4年生</span> <span class="grade-label gl3">3年生</span> <span class="grade-label gl2">2年生</span> <span class="grade-label gl1">1年生</span> で色分け表示</div>
+</div>
+
+<!-- TAB 4: チーム分け -->
+<div class="tab-content content4">
+  <div class="card">
+    <div style="font-size:.85rem;font-weight:700;color:#1a5276;margin-bottom:6px">📅 日程選択</div>
+    <select id="tb-session" class="tb-input"></select>
+    <div id="tb-session-info" style="font-size:.7rem;color:#5a6c7d;margin-top:4px"></div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:.85rem;font-weight:700;color:#1a5276;margin-bottom:6px">➕ 飛び込み参加追加</div>
+    <div class="tb-row">
+      <input type="text" id="tb-walkin-name" class="tb-input" placeholder="名前">
+      <select id="tb-walkin-grade" class="tb-input">
+        <option value="4">4年</option>
+        <option value="3">3年</option>
+        <option value="2" selected>2年</option>
+        <option value="1">1年</option>
+        <option value="0">学年未定</option>
+      </select>
+      <button class="tb-btn add" onclick="tbAddWalkin()">追加</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="tb-actions">
+      <button class="tb-btn team-add" onclick="tbAddTeam()">➕ チーム追加</button>
+      <button class="tb-btn balance" onclick="tbAutoBalance()">⚖️ 学年バランス自動分け</button>
+      <button class="tb-btn copy" onclick="tbCopySummary()">📋 結果コピー</button>
+      <button class="tb-btn reset" onclick="tbResetAll()">🔄 リセット</button>
+    </div>
+    <div class="tb-hint">名前をタップ → 下に出る移動先ボタンで移動</div>
+  </div>
+
+  <div class="tb-pool" id="tb-pool">
+    <div style="font-size:.85rem;font-weight:700;color:#1a5276;margin-bottom:6px">🎒 未割当 <span id="tb-pool-count" class="tb-team-meta"></span></div>
+    <div class="tb-names" id="tb-pool-names"></div>
+  </div>
+
+  <div id="tb-teams"></div>
+
+  <div class="tb-action-bar" id="tb-action-bar">
+    <div class="tb-action-bar-title">
+      <span id="tb-action-bar-title-text">移動先を選択</span>
+      <button class="tb-action-bar-close" onclick="tbCancelMove()">✕</button>
+    </div>
+    <div class="tb-action-bar-buttons" id="tb-action-bar-buttons"></div>
+  </div>
+
+<script>
+const TB_SESSIONS = [{"key": "4/1", "label": "4/1（水） 18:00-19:30@柳北", "participants": [{"name": "Misha jain", "grade": 4}, {"name": "中村れい", "grade": 3}, {"name": "今田ともか", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "中野日々", "grade": 2}, {"name": "西井あきのり", "grade": 2}, {"name": "久信田もとい", "grade": 1}]}, {"key": "4/4", "label": "4/4（土） 18:00-19:30@台東リバーサイドSC第1 🏆", "participants": [{"name": "いそみすず", "grade": 3}, {"name": "だいし", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "内堀こう", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "牧かるま", "grade": 1}]}, {"key": "4/5j", "label": "4/5（日） 10:00-12:00@たなか 🏃", "participants": [{"name": "中村れい", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "及川しゅん", "grade": 2}, {"name": "牧かるま", "grade": 1}]}, {"key": "4/7", "label": "4/7（火） 18:00-19:30@柳北", "participants": [{"name": "だいし", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "今田ともか", "grade": 3}, {"name": "清水けいいち", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "しおん", "grade": 2}, {"name": "のもとまひろ", "grade": 2}, {"name": "千葉かずり", "grade": 2}, {"name": "及川しゅん", "grade": 2}, {"name": "久信田もとい", "grade": 1}, {"name": "牧かるま", "grade": 1}]}, {"key": "4/8", "label": "4/8（水） 18:00-19:30@柳北", "participants": [{"name": "Misha jain", "grade": 4}, {"name": "Aadhya Singhal", "grade": 3}, {"name": "だいし", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "今田ともか", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "中野日々", "grade": 2}, {"name": "濱名いと", "grade": 2}, {"name": "西井あきのり", "grade": 2}, {"name": "久信田もとい", "grade": 1}, {"name": "牧かるま", "grade": 1}, {"name": "角野友基", "grade": 1}]}, {"key": "4/10", "label": "4/10（金） 18:00-19:30@育英小", "participants": [{"name": "中村れい", "grade": 3}, {"name": "清水けいいち", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "のもとまひろ", "grade": 2}, {"name": "並木だいち", "grade": 2}, {"name": "中野日々", "grade": 2}, {"name": "千葉かずり", "grade": 2}, {"name": "及川しゅん", "grade": 2}, {"name": "牧かるま", "grade": 1}]}, {"key": "4/12j", "label": "4/12（日） 13:30-16:30@たなか 🏃", "participants": [{"name": "中村れい", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "牧かるま", "grade": 1}]}, {"key": "4/15", "label": "4/15（水） 18:00-19:30@柳北", "participants": [{"name": "Misha jain", "grade": 4}, {"name": "Aadhya Singhal", "grade": 3}, {"name": "だいし", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "今田ともか", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "かじはら ゆきのじょう", "grade": 2}, {"name": "のもとまひろ", "grade": 2}, {"name": "並木だいち", "grade": 2}, {"name": "中野日々", "grade": 2}, {"name": "及川しゅん", "grade": 2}, {"name": "濱名いと", "grade": 2}, {"name": "西井あきのり", "grade": 2}, {"name": "久信田もとい", "grade": 1}, {"name": "牧かるま", "grade": 1}, {"name": "角野友基", "grade": 1}]}, {"key": "4/18", "label": "4/18（土） 13:00-14:30@育英小", "participants": [{"name": "いそみすず", "grade": 3}, {"name": "だいし", "grade": 3}, {"name": "内堀こう", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "いそむらちさ", "grade": 2}, {"name": "のもとまひろ", "grade": 2}, {"name": "ますだあおい", "grade": 2}, {"name": "並木だいち", "grade": 2}, {"name": "中野日々", "grade": 2}, {"name": "及川しゅん", "grade": 2}]}, {"key": "4/20", "label": "4/20（月） 18:00-19:30@柳北", "participants": [{"name": "Misha jain", "grade": 4}, {"name": "いそみすず", "grade": 3}, {"name": "ミヤタエイト", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "今田ともか", "grade": 3}, {"name": "清水けいいち", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "いそむらちさ", "grade": 2}, {"name": "かじはら ゆきのじょう", "grade": 2}, {"name": "並木だいち", "grade": 2}, {"name": "中野日々", "grade": 2}, {"name": "及川しゅん", "grade": 2}, {"name": "西井あきのり", "grade": 2}, {"name": "久信田もとい", "grade": 1}]}, {"key": "4/24", "label": "4/24（金） 18:00-19:30@育英小", "participants": [{"name": "いそみすず", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "今田ともか", "grade": 3}, {"name": "清水けいいち", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "しおん", "grade": 2}, {"name": "のもとまひろ", "grade": 2}, {"name": "並木だいち", "grade": 2}, {"name": "中野日々", "grade": 2}, {"name": "千葉かずり", "grade": 2}, {"name": "及川しゅん", "grade": 2}, {"name": "濱名いと", "grade": 2}, {"name": "道口えま", "grade": 2}, {"name": "久信田もとい", "grade": 1}, {"name": "牧かるま", "grade": 1}, {"name": "角野友基", "grade": 1}]}, {"key": "4/27", "label": "4/27（月） 18:00-19:15@柳北 🌳", "participants": [{"name": "Aadhya Singhal", "grade": 3}, {"name": "いそみすず", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "いそむらちさ", "grade": 2}, {"name": "かじはら ゆきのじょう", "grade": 2}, {"name": "並木だいち", "grade": 2}, {"name": "千葉かずり", "grade": 2}, {"name": "及川しゅん", "grade": 2}, {"name": "久信田もとい", "grade": 1}, {"name": "角野友基", "grade": 1}]}, {"key": "4/28", "label": "4/28（火） 18:00-19:30@柳北", "participants": [{"name": "いそみすず", "grade": 3}, {"name": "だいし", "grade": 3}, {"name": "ミヤタエイト", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "今田ともか", "grade": 3}, {"name": "清水けいいち", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "ますだあおい", "grade": 2}, {"name": "中野日々", "grade": 2}, {"name": "濱名いと", "grade": 2}, {"name": "西井あきのり", "grade": 2}, {"name": "久信田もとい", "grade": 1}, {"name": "牧かるま", "grade": 1}]}, {"key": "4/29", "label": "4/29（水-祝） 9:00-10:30@たなか", "participants": [{"name": "いそみすず", "grade": 3}, {"name": "だいし", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "内堀こう", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "かじはら ゆきのじょう", "grade": 2}, {"name": "並木だいち", "grade": 2}, {"name": "牧かるま", "grade": 1}]}, {"key": "4/29j", "label": "4/29（水-祝） 10:30-12:00@たなか 🏃", "participants": [{"name": "だいし", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "内堀こう", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "並木だいち", "grade": 2}, {"name": "牧かるま", "grade": 1}]}];
+let tbCurrentKey = null, tbPool = [], tbTeams = [], tbNextId = 1, tbSelected = null;
+
+function tbInit(){
+  const sel = document.getElementById('tb-session');
+  TB_SESSIONS.forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s.key; opt.textContent = s.label;
+    sel.appendChild(opt);
+  });
+  sel.addEventListener('change', () => tbLoad(sel.value));
+  if (TB_SESSIONS.length){ sel.value = TB_SESSIONS[0].key; tbLoad(TB_SESSIONS[0].key); }
+  document.getElementById('tb-walkin-name').addEventListener('keydown', e => { if (e.key==='Enter') tbAddWalkin(); });
+  document.getElementById('tb-pool').addEventListener('click', e => {
+    if (e.target.classList.contains('tb-name')) return;
+    tbMoveTo('pool', null);
+  });
+}
+
+function tbLoad(key){
+  tbCurrentKey = key;
+  const sess = TB_SESSIONS.find(s => s.key === key);
+  document.getElementById('tb-session-info').textContent = `元データ: ${sess.participants.length}名`;
+  const saved = localStorage.getItem(`tb_${key}`);
+  if (saved){
+    const st = JSON.parse(saved);
+    tbPool = st.pool; tbTeams = st.teams; tbNextId = st.nextId || (tbTeams.length ? Math.max(...tbTeams.map(t=>t.id))+1 : 1);
+  } else {
+    tbPool = sess.participants.map(p => ({...p})); tbTeams = []; tbNextId = 1;
+  }
+  tbSelected = null;
+  tbRender();
+}
+
+function tbSave(){ localStorage.setItem(`tb_${tbCurrentKey}`, JSON.stringify({pool: tbPool, teams: tbTeams, nextId: tbNextId})); }
+
+function tbEsc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+function tbChip(p){
+  const span = document.createElement('span');
+  const g = p.grade || 0;
+  span.className = `tb-name g${g}`;
+  span.dataset.name = p.name; span.dataset.grade = g;
+  span.innerHTML = `<span class="tb-grade-tag">${g||'?'}</span>${tbEsc(p.name)}`;
+  span.addEventListener('click', e => { e.stopPropagation(); tbSelectName(span); });
+  return span;
+}
+
+function tbSelectName(el){
+  if (tbSelected){
+    tbSelected.classList.remove('selected');
+    if (tbSelected === el){ tbSelected=null; tbHideBar(); tbClearTargets(); return; }
+  }
+  el.classList.add('selected');
+  tbSelected = el;
+  tbShowTargets();
+  tbShowBar(el.dataset.name);
+}
+
+function tbShowTargets(){
+  document.getElementById('tb-pool').classList.add('target');
+  document.querySelectorAll('.tb-team').forEach(t => t.classList.add('target'));
+}
+function tbClearTargets(){
+  document.getElementById('tb-pool').classList.remove('target');
+  document.querySelectorAll('.tb-team').forEach(t => t.classList.remove('target'));
+}
+
+function tbShowBar(name){
+  const bar = document.getElementById('tb-action-bar');
+  document.getElementById('tb-action-bar-title-text').textContent = `「${name}」の移動先`;
+  const btns = document.getElementById('tb-action-bar-buttons');
+  btns.innerHTML = '';
+  const loc = tbFindLoc(name);
+  if (loc !== 'pool'){
+    const b = document.createElement('button');
+    b.className = 'tb-move-btn pool'; b.textContent = '🎒 未割当';
+    b.onclick = () => tbMoveTo('pool', null);
+    btns.appendChild(b);
+  }
+  tbTeams.forEach(t => {
+    if (loc === `team-${t.id}`) return;
+    const b = document.createElement('button');
+    b.className = 'tb-move-btn'; b.textContent = `Team ${t.id} (${t.names.length}名)`;
+    b.onclick = () => tbMoveTo('team', t.id);
+    btns.appendChild(b);
+  });
+  if (btns.children.length === 0){
+    btns.innerHTML = '<div style="color:#95a5a6;font-size:.75rem;padding:6px">他に移動先がありません。「➕ チーム追加」でチームを増やしてください</div>';
+  }
+  bar.classList.add('show');
+}
+function tbHideBar(){ document.getElementById('tb-action-bar').classList.remove('show'); }
+function tbCancelMove(){
+  if (tbSelected){ tbSelected.classList.remove('selected'); tbSelected = null; }
+  tbClearTargets(); tbHideBar();
+}
+function tbFindLoc(name){
+  if (tbPool.some(p => p.name === name)) return 'pool';
+  for (const t of tbTeams){ if (t.names.some(p=>p.name===name)) return `team-${t.id}`; }
+  return null;
+}
+
+function tbMoveTo(targetType, teamId){
+  if (!tbSelected) return;
+  const name = tbSelected.dataset.name, grade = parseInt(tbSelected.dataset.grade);
+  tbPool = tbPool.filter(p => p.name !== name);
+  tbTeams.forEach(t => { t.names = t.names.filter(p => p.name !== name); });
+  const item = {name, grade};
+  if (targetType === 'pool') tbPool.push(item);
+  else { const team = tbTeams.find(t => t.id === teamId); if (team) team.names.push(item); }
+  tbSelected = null; tbClearTargets(); tbHideBar();
+  tbRender(); tbSave();
+}
+
+function tbCounts(arr){ const c={}; arr.forEach(p=>{ c[p.grade||0]=(c[p.grade||0]||0)+1; }); return c; }
+
+function tbRender(){
+  const pn = document.getElementById('tb-pool-names');
+  pn.innerHTML = '';
+  if (tbPool.length === 0) pn.innerHTML = '<div class="tb-empty">未割当なし</div>';
+  else { tbPool.sort((a,b)=>(b.grade||0)-(a.grade||0)||a.name.localeCompare(b.name,'ja')); tbPool.forEach(p => pn.appendChild(tbChip(p))); }
+  document.getElementById('tb-pool-count').textContent = `(${tbPool.length}名)`;
+
+  const tEl = document.getElementById('tb-teams');
+  tEl.innerHTML = '';
+  tbTeams.forEach(t => {
+    const card = document.createElement('div');
+    card.className = 'tb-team';
+    card.dataset.teamId = t.id;
+    card.addEventListener('click', e => {
+      if (e.target.classList.contains('tb-name')) return;
+      if (e.target.classList.contains('tb-team-remove')) return;
+      tbMoveTo('team', t.id);
+    });
+    const counts = tbCounts(t.names);
+    const breakdown = [4,3,2,1,0].filter(g=>counts[g]).map(g=>`${g||'?'}年×${counts[g]}`).join(' ');
+    card.innerHTML = `
+      <div class="tb-team-header">
+        <div><span class="tb-team-title">Team ${t.id}</span><span class="tb-team-meta">(${t.names.length}名${breakdown?' / '+breakdown:''})</span></div>
+        <button class="tb-team-remove" onclick="event.stopPropagation(); tbRemoveTeam(${t.id})" title="チーム削除">✕</button>
+      </div>
+      <div class="tb-names" id="tb-team-${t.id}-names"></div>
+    `;
+    tEl.appendChild(card);
+    const ns = document.getElementById(`tb-team-${t.id}-names`);
+    if (t.names.length === 0) ns.innerHTML = '<div class="tb-empty">名前をタップして移動</div>';
+    else { const sorted=[...t.names].sort((a,b)=>(b.grade||0)-(a.grade||0)||a.name.localeCompare(b.name,'ja')); sorted.forEach(p => ns.appendChild(tbChip(p))); }
+  });
+  if (tbSelected) tbShowTargets();
+}
+
+function tbAddTeam(){ tbTeams.push({id: tbNextId++, names: []}); tbRender(); tbSave(); }
+function tbRemoveTeam(id){
+  const t = tbTeams.find(x => x.id === id); if (!t) return;
+  if (t.names.length > 0 && !confirm(`Team ${id} の${t.names.length}名を未割当に戻して削除します。よろしいですか？`)) return;
+  tbPool.push(...t.names); tbTeams = tbTeams.filter(x => x.id !== id);
+  tbRender(); tbSave();
+}
+function tbAddWalkin(){
+  const ne = document.getElementById('tb-walkin-name'); const name = ne.value.trim(); if (!name){ ne.focus(); return; }
+  const grade = parseInt(document.getElementById('tb-walkin-grade').value);
+  const exists = [...tbPool, ...tbTeams.flatMap(t=>t.names)].some(p=>p.name===name);
+  if (exists){ alert(`「${name}」は既に追加されています`); return; }
+  tbPool.push({name, grade}); ne.value = '';
+  tbRender(); tbSave();
+}
+function tbAutoBalance(){
+  if (tbTeams.length === 0){ alert('先に「➕ チーム追加」でチームを作ってください'); return; }
+  const all = [...tbPool, ...tbTeams.flatMap(t=>t.names)];
+  if (all.length === 0){ alert('参加者がいません'); return; }
+  all.sort((a,b)=>(b.grade||0)-(a.grade||0)||a.name.localeCompare(b.name,'ja'));
+  tbTeams.forEach(t => t.names = []); tbPool = [];
+  let idx=0, dir=1;
+  for (const p of all){
+    tbTeams[idx].names.push(p);
+    if (tbTeams.length === 1) continue;
+    if (idx + dir < 0 || idx + dir >= tbTeams.length) dir = -dir;
+    else idx += dir;
+  }
+  tbRender(); tbSave();
+}
+function tbCopySummary(){
+  const sess = TB_SESSIONS.find(s => s.key === tbCurrentKey);
+  const lines = [`🏀 チーム分け: ${sess.label}`];
+  tbTeams.forEach(t => {
+    const c = tbCounts(t.names); const bd = [4,3,2,1,0].filter(g=>c[g]).map(g=>`${g||'?'}年×${c[g]}`).join(' ');
+    lines.push(''); lines.push(`【Team ${t.id}】 ${t.names.length}名${bd?' ('+bd+')':''}`);
+    [...t.names].sort((a,b)=>(b.grade||0)-(a.grade||0)||a.name.localeCompare(b.name,'ja')).forEach(p => lines.push(`  ${p.grade||'?'}年 ${p.name}`));
+  });
+  if (tbPool.length){
+    lines.push(''); lines.push(`【未割当】 ${tbPool.length}名`);
+    [...tbPool].sort((a,b)=>(b.grade||0)-(a.grade||0)||a.name.localeCompare(b.name,'ja')).forEach(p => lines.push(`  ${p.grade||'?'}年 ${p.name}`));
+  }
+  const text = lines.join('\n');
+  navigator.clipboard.writeText(text).then(()=>alert('クリップボードにコピーしました'), ()=>prompt('手動でコピー:', text));
+}
+function tbResetAll(){
+  if (!confirm('現在の日程のチーム分けを破棄して元に戻します。よろしいですか？')) return;
+  localStorage.removeItem(`tb_${tbCurrentKey}`);
+  tbLoad(tbCurrentKey);
+}
+
+document.addEventListener('DOMContentLoaded', tbInit);
+if (document.readyState !== 'loading') tbInit();
+</script>
+
 </div>
 
 </body>
