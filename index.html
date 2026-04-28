@@ -13,10 +13,10 @@
   .subtitle{text-align:center;font-size:0.8rem;color:#7f8c8d;margin-bottom:20px}
   .tabs{display:flex;gap:0;margin-bottom:0;border-radius:12px 12px 0 0;overflow:hidden}
   .tabs input[type="radio"]{display:none}
-  .tabs label{flex:1;text-align:center;padding:10px 2px;font-size:0.7rem;font-weight:600;cursor:pointer;background:#d5e8f0;color:#5a7a8a;transition:all .2s}
-  #tab1:checked~.tabs label[for="tab1"],#tab2:checked~.tabs label[for="tab2"],#tab3:checked~.tabs label[for="tab3"],#tab4:checked~.tabs label[for="tab4"],#tab5:checked~.tabs label[for="tab5"]{background:#fff;color:#1a5276;box-shadow:0 -2px 0 #2e86c1 inset}
+  .tabs label{flex:1;text-align:center;padding:11px 4px;font-size:0.78rem;font-weight:600;cursor:pointer;background:#d5e8f0;color:#5a7a8a;transition:all .2s}
+  #tab1:checked~.tabs label[for="tab1"],#tab2:checked~.tabs label[for="tab2"],#tab4:checked~.tabs label[for="tab4"],#tab5:checked~.tabs label[for="tab5"]{background:#fff;color:#1a5276;box-shadow:0 -2px 0 #2e86c1 inset}
   .tab-content{display:none;background:#fff;border-radius:0 0 12px 12px;padding:12px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
-  #tab1:checked~.tab-content.content1,#tab2:checked~.tab-content.content2,#tab3:checked~.tab-content.content3,#tab4:checked~.tab-content.content4,#tab5:checked~.tab-content.content5{display:block}
+  #tab1:checked~.tab-content.content1,#tab2:checked~.tab-content.content2,#tab4:checked~.tab-content.content4,#tab5:checked~.tab-content.content5{display:block}
   .card{border:1px solid #e8eef3;border-radius:10px;padding:12px;margin-bottom:10px;background:#fafcfe}
   .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
   .date{font-weight:700;font-size:.95rem;color:#1a5276}
@@ -125,9 +125,9 @@
 </head>
 <body>
 <h1>🏀 4月 低学年スケジュール</h1>
-<p class="subtitle">コーチ配置表（全12回）｜ 更新: 2026/04/28 13:13</p>
-<input type="radio" name="tab" id="tab1" checked><input type="radio" name="tab" id="tab2"><input type="radio" name="tab" id="tab3"><input type="radio" name="tab" id="tab4"><input type="radio" name="tab" id="tab5">
-<div class="tabs"><label for="tab1">📋 スケジュール</label><label for="tab2">👤 担当</label><label for="tab3">👧 参加者</label><label for="tab4">🏆 チーム分け</label><label for="tab5">🎯 キャプテン</label></div>
+<p class="subtitle">コーチ配置表（全12回）｜ 更新: 2026/04/28 13:20</p>
+<input type="radio" name="tab" id="tab1" checked><input type="radio" name="tab" id="tab2"><input type="radio" name="tab" id="tab4"><input type="radio" name="tab" id="tab5">
+<div class="tabs"><label for="tab1">📋 スケジュール</label><label for="tab2">👤 担当</label><label for="tab4">🏆 チーム分け</label><label for="tab5">🎯 キャプテン</label></div>
 
 <!-- TAB 1 -->
 <div class="tab-content content1">
@@ -267,60 +267,6 @@
     </tbody>
   </table>
   <div class="legend">💡 もりもりの日にはコーチ不要</div>
-</div>
-
-<!-- TAB 3 -->
-<div class="tab-content content3">
-  <div class="p-card"><div class="p-card-header"><span class="p-date">① 4/1（水）</span><span class="badge">7名</span></div>
-    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 柳北 ｜ 担当: 中野秀則</div>
-    <div class="p-grade-count"><span class="grade-label gl4">4年 1名</span> <span class="grade-label gl3">3年 3名</span> <span class="grade-label gl2">2年 2名</span> <span class="grade-label gl1">1年 1名</span></div>
-    <div class="p-names"><span class="g4">Misha jain</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">米倉のぞみ</span><span class="g2">西井あきのり</span><span class="g2">中野日々</span><span class="g1">久信田もとい</span></div></div>
-  <div class="p-card"><div class="p-card-header"><span class="p-date">② 4/4（土） GameDay</span><span class="badge gameday">6名</span></div>
-    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 台東リバーサイドSC第1 ｜ 担当: 牧てつや</div>
-    <div class="p-grade-count"><span class="grade-label gl3">3年 5名</span> <span class="grade-label gl1">1年 1名</span></div>
-    <div class="p-names"><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">内堀こう</span><span class="g3">いそみすず</span><span class="g3">牧かいと</span><span class="g1">牧かるま</span></div></div>
-  <div class="p-card"><div class="p-card-header"><span class="p-date">③ 4/7（火）</span><span class="badge">12名</span></div>
-    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 柳北 ｜ 担当: 牧てつや</div>
-    <div class="p-grade-count"><span class="grade-label gl3">3年 6名</span> <span class="grade-label gl2">2年 4名</span> <span class="grade-label gl1">1年 2名</span></div>
-    <div class="p-names"><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">牧かいと</span><span class="g3">米倉のぞみ</span><span class="g3">清水けいいち</span><span class="g2">及川しゅん</span><span class="g2">のもとまひろ</span><span class="g2">千葉かずり</span><span class="g2">しおん</span><span class="g1">久信田もとい</span><span class="g1">牧かるま</span></div></div>
-  <div class="p-card"><div class="p-card-header"><span class="p-date">④ 4/8（水）</span><span class="badge">12名</span></div>
-    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 柳北 ｜ 担当: 中野秀則</div>
-    <div class="p-grade-count"><span class="grade-label gl4">4年 1名</span> <span class="grade-label gl3">3年 5名</span> <span class="grade-label gl2">2年 3名</span> <span class="grade-label gl1">1年 3名</span></div>
-    <div class="p-names"><span class="g4">Misha jain</span><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">米倉のぞみ</span><span class="g3">Aadhya Singhal</span><span class="g2">西井あきのり</span><span class="g2">中野日々</span><span class="g2">濱名いと</span><span class="g1">久信田もとい</span><span class="g1">牧かるま</span><span class="g1">角野友基</span></div></div>
-  <div class="p-card"><div class="p-card-header"><span class="p-date">⑤ 4/10（金）</span><span class="badge">10名</span></div>
-    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 育英小 ｜ 担当: 牧てつや</div>
-    <div class="p-grade-count"><span class="grade-label gl3">3年 4名</span> <span class="grade-label gl2">2年 5名</span> <span class="grade-label gl1">1年 1名</span></div>
-    <div class="p-names"><span class="g3">中村れい</span><span class="g3">牧かいと</span><span class="g3">米倉のぞみ</span><span class="g3">清水けいいち</span><span class="g2">及川しゅん</span><span class="g2">のもとまひろ</span><span class="g2">中野日々</span><span class="g2">千葉かずり</span><span class="g2">並木だいち</span><span class="g1">牧かるま</span></div></div>
-  <div class="p-card"><div class="p-card-header"><span class="p-date">⑥ 4/15（水）</span><span class="badge">17名</span></div>
-    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 柳北 ｜ 担当: 及川和馬 + 中野秀則</div>
-    <div class="p-grade-count"><span class="grade-label gl4">4年 1名</span> <span class="grade-label gl3">3年 6名</span> <span class="grade-label gl2">2年 7名</span> <span class="grade-label gl1">1年 3名</span></div>
-    <div class="p-names"><span class="g4">Misha jain</span><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">牧かいと</span><span class="g3">米倉のぞみ</span><span class="g3">Aadhya Singhal</span><span class="g2">及川しゅん</span><span class="g2">西井あきのり</span><span class="g2">のもとまひろ</span><span class="g2">中野日々</span><span class="g2">並木だいち</span><span class="g2">濱名いと</span><span class="g2">かじはら ゆきのじょう</span><span class="g1">久信田もとい</span><span class="g1">牧かるま</span><span class="g1">角野友基</span></div></div>
-  <div class="p-card"><div class="p-card-header"><span class="p-date">⑦ 4/18（土）</span><span class="badge">10名</span></div>
-    <div class="p-venue">🕐 13:00-14:30 ｜ 📍 育英小 ｜ 担当: ヨネクラ</div>
-    <div class="p-grade-count"><span class="grade-label gl3">3年 4名</span> <span class="grade-label gl2">2年 6名</span></div>
-    <div class="p-names"><span class="g3">だいし</span><span class="g3">内堀こう</span><span class="g3">いそみすず</span><span class="g3">米倉のぞみ</span><span class="g2">及川しゅん</span><span class="g2">のもとまひろ</span><span class="g2">いそむらちさ</span><span class="g2">中野日々</span><span class="g2">ますだあおい</span><span class="g2">並木だいち</span></div></div>
-  <div class="p-card"><div class="p-card-header"><span class="p-date">⑧ 4/20（月）</span><span class="badge">14名</span></div>
-    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 柳北 ｜ 担当: 及川和馬 + 中野秀則</div>
-    <div class="p-grade-count"><span class="grade-label gl4">4年 1名</span> <span class="grade-label gl3">3年 6名</span> <span class="grade-label gl2">2年 6名</span> <span class="grade-label gl1">1年 1名</span></div>
-    <div class="p-names"><span class="g4">Misha jain</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">いそみすず</span><span class="g3">米倉のぞみ</span><span class="g3">清水けいいち</span><span class="g3">ミヤタエイト</span><span class="g2">及川しゅん</span><span class="g2">西井あきのり</span><span class="g2">いそむらちさ</span><span class="g2">中野日々</span><span class="g2">並木だいち</span><span class="g2">かじはら ゆきのじょう</span><span class="g1">久信田もとい</span></div></div>
-  <div class="p-card"><div class="p-card-header"><span class="p-date">⑨ 4/24（金）</span><span class="badge">17名</span></div>
-    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 育英小 ｜ 担当: 中野秀則 + 牧てつや</div>
-    <div class="p-grade-count"><span class="grade-label gl3">3年 6名</span> <span class="grade-label gl2">2年 8名</span> <span class="grade-label gl1">1年 3名</span></div>
-    <div class="p-names"><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">いそみすず</span><span class="g3">牧かいと</span><span class="g3">米倉のぞみ</span><span class="g3">清水けいいち</span><span class="g2">及川しゅん</span><span class="g2">のもとまひろ</span><span class="g2">中野日々</span><span class="g2">千葉かずり</span><span class="g2">しおん</span><span class="g2">並木だいち</span><span class="g2">濱名いと</span><span class="g2">道口えま</span><span class="g1">久信田もとい</span><span class="g1">牧かるま</span><span class="g1">角野友基</span></div></div>
-  <div class="p-card"><div class="p-card-header"><span class="p-date">⑩ 4/27（月） もりもり</span><span class="badge morimori">11名</span></div>
-    <div class="p-venue">🕕 18:00-19:15 ｜ 📍 柳北 ｜ コーチ不要</div>
-    <div class="p-grade-count"><span class="grade-label gl3">3年 4名</span> <span class="grade-label gl2">2年 5名</span> <span class="grade-label gl1">1年 2名</span></div>
-    <div class="p-names"><span class="g3">中村れい</span><span class="g3">いそみすず</span><span class="g3">米倉のぞみ</span><span class="g3">Aadhya Singhal</span><span class="g2">及川しゅん</span><span class="g2">いそむらちさ</span><span class="g2">千葉かずり</span><span class="g2">並木だいち</span><span class="g2">かじはら ゆきのじょう</span><span class="g1">久信田もとい</span><span class="g1">角野友基</span></div></div>
-  <div class="p-card"><div class="p-card-header"><span class="p-date">⑪ 4/28（火）</span><span class="badge">14名</span></div>
-    <div class="p-venue">🕕 18:00-19:30 ｜ 📍 柳北 ｜ 担当: 牧てつや + ヨネクラ</div>
-    <div class="p-grade-count"><span class="grade-label gl3">3年 8名</span> <span class="grade-label gl2">2年 4名</span> <span class="grade-label gl1">1年 2名</span></div>
-    <div class="p-names"><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">今田ともか</span><span class="g3">いそみすず</span><span class="g3">牧かいと</span><span class="g3">米倉のぞみ</span><span class="g3">清水けいいち</span><span class="g3">ミヤタエイト</span><span class="g2">西井あきのり</span><span class="g2">中野日々</span><span class="g2">ますだあおい</span><span class="g2">濱名いと</span><span class="g1">久信田もとい</span><span class="g1">牧かるま</span></div></div>
-  <div class="p-card"><div class="p-card-header"><span class="p-date">⑫ 4/29（水-祝）</span><span class="badge">8名</span></div>
-    <div class="p-venue">🕘 9:00-10:30 ｜ 📍 たなか ｜ 担当: 牧てつや</div>
-    <div class="p-grade-count"><span class="grade-label gl3">3年 5名</span> <span class="grade-label gl2">2年 2名</span> <span class="grade-label gl1">1年 1名</span></div>
-    <div class="p-names"><span class="g3">だいし</span><span class="g3">中村れい</span><span class="g3">内堀こう</span><span class="g3">いそみすず</span><span class="g3">牧かいと</span><span class="g2">並木だいち</span><span class="g2">かじはら ゆきのじょう</span><span class="g1">牧かるま</span></div></div>
-
-  <div class="legend"><span class="grade-label gl4">4年生</span> <span class="grade-label gl3">3年生</span> <span class="grade-label gl2">2年生</span> <span class="grade-label gl1">1年生</span> で色分け表示</div>
 </div>
 
 <!-- TAB 4: チーム分け -->
