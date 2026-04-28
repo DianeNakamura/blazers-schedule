@@ -13,10 +13,10 @@
   .subtitle{text-align:center;font-size:0.8rem;color:#7f8c8d;margin-bottom:20px}
   .tabs{display:flex;gap:0;margin-bottom:0;border-radius:12px 12px 0 0;overflow:hidden}
   .tabs input[type="radio"]{display:none}
-  .tabs label{flex:1;text-align:center;padding:12px 4px;font-size:0.75rem;font-weight:600;cursor:pointer;background:#d5e8f0;color:#5a7a8a;transition:all .2s}
-  #tab1:checked~.tabs label[for="tab1"],#tab2:checked~.tabs label[for="tab2"],#tab3:checked~.tabs label[for="tab3"],#tab4:checked~.tabs label[for="tab4"]{background:#fff;color:#1a5276;box-shadow:0 -2px 0 #2e86c1 inset}
+  .tabs label{flex:1;text-align:center;padding:10px 2px;font-size:0.7rem;font-weight:600;cursor:pointer;background:#d5e8f0;color:#5a7a8a;transition:all .2s}
+  #tab1:checked~.tabs label[for="tab1"],#tab2:checked~.tabs label[for="tab2"],#tab3:checked~.tabs label[for="tab3"],#tab4:checked~.tabs label[for="tab4"],#tab5:checked~.tabs label[for="tab5"]{background:#fff;color:#1a5276;box-shadow:0 -2px 0 #2e86c1 inset}
   .tab-content{display:none;background:#fff;border-radius:0 0 12px 12px;padding:12px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
-  #tab1:checked~.tab-content.content1,#tab2:checked~.tab-content.content2,#tab3:checked~.tab-content.content3,#tab4:checked~.tab-content.content4{display:block}
+  #tab1:checked~.tab-content.content1,#tab2:checked~.tab-content.content2,#tab3:checked~.tab-content.content3,#tab4:checked~.tab-content.content4,#tab5:checked~.tab-content.content5{display:block}
   .card{border:1px solid #e8eef3;border-radius:10px;padding:12px;margin-bottom:10px;background:#fafcfe}
   .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
   .date{font-weight:700;font-size:.95rem;color:#1a5276}
@@ -101,13 +101,33 @@
   .tb-action-bar-buttons{display:flex;gap:6px;flex-wrap:wrap}
   .tb-move-btn{flex:1 1 auto;min-width:90px;padding:10px 12px;border:none;border-radius:8px;font-size:.78rem;font-weight:600;cursor:pointer;color:#fff;background:#3498db}
   .tb-move-btn.pool{background:#7f8c8d}
+  /* Captain roulette (tab5) */
+  .cp-display{background:linear-gradient(135deg,#fef9e7,#fdf2e9);border:3px solid #f39c12;border-radius:14px;padding:20px;text-align:center;margin:10px 0;min-height:90px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;overflow:hidden}
+  .cp-display.spinning{border-color:#3498db;background:linear-gradient(135deg,#eef7fc,#fef9e7)}
+  .cp-display.done{border-color:#27ae60;background:linear-gradient(135deg,#eaf7ef,#fef9e7);animation:cpPulse .6s ease-out}
+  @keyframes cpPulse{0%{transform:scale(.95)}50%{transform:scale(1.04)}100%{transform:scale(1)}}
+  .cp-result-name{font-size:1.6rem;font-weight:700;color:#1a5276;line-height:1.3}
+  .cp-result-grade{font-size:.75rem;color:#7f8c8d;margin-top:4px;font-weight:600}
+  .cp-result-prefix{font-size:.7rem;color:#95a5a6;margin-bottom:6px;letter-spacing:.05em}
+  .cp-roulette-btn{display:block;width:100%;padding:14px;border:none;border-radius:10px;background:linear-gradient(135deg,#e74c3c,#c0392b);color:#fff;font-size:1rem;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(231,76,60,.3);margin:10px 0}
+  .cp-roulette-btn:active{transform:translateY(1px)}
+  .cp-roulette-btn:disabled{opacity:.6;cursor:not-allowed}
+  .cp-roulette-btn.again{background:linear-gradient(135deg,#3498db,#2980b9);box-shadow:0 4px 12px rgba(52,152,219,.3)}
+  .cp-row{display:grid;grid-template-columns:1fr 80px;gap:6px;align-items:center;margin-top:6px}
+  .cp-pool{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+  .cp-name{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:14px;font-size:.75rem;cursor:pointer;user-select:none;opacity:.85}
+  .cp-name.excluded{opacity:.3;text-decoration:line-through}
+  .cp-name.captain{box-shadow:0 0 0 3px #f39c12;font-weight:700}
+  .cp-grade-tag{font-size:.6rem;font-weight:700;padding:0 4px;border-radius:8px;background:rgba(0,0,0,.08)}
+  .cp-history{margin-top:8px;font-size:.7rem;color:#7f8c8d}
+  .cp-history-item{display:inline-block;background:#ecf0f1;padding:2px 8px;border-radius:10px;margin:2px}
 </style>
 </head>
 <body>
 <h1>🏀 4月 低学年スケジュール</h1>
-<p class="subtitle">コーチ配置表（全12回）｜ 更新: 2026/04/28 12:48</p>
-<input type="radio" name="tab" id="tab1" checked><input type="radio" name="tab" id="tab2"><input type="radio" name="tab" id="tab3"><input type="radio" name="tab" id="tab4">
-<div class="tabs"><label for="tab1">📋 スケジュール</label><label for="tab2">👤 コーチ担当数</label><label for="tab3">👧 参加者一覧</label><label for="tab4">🏆 チーム分け</label></div>
+<p class="subtitle">コーチ配置表（全12回）｜ 更新: 2026/04/28 13:13</p>
+<input type="radio" name="tab" id="tab1" checked><input type="radio" name="tab" id="tab2"><input type="radio" name="tab" id="tab3"><input type="radio" name="tab" id="tab4"><input type="radio" name="tab" id="tab5">
+<div class="tabs"><label for="tab1">📋 スケジュール</label><label for="tab2">👤 担当</label><label for="tab3">👧 参加者</label><label for="tab4">🏆 チーム分け</label><label for="tab5">🎯 キャプテン</label></div>
 
 <!-- TAB 1 -->
 <div class="tab-content content1">
@@ -557,6 +577,199 @@ function tbResetAll(){
 
 document.addEventListener('DOMContentLoaded', tbInit);
 if (document.readyState !== 'loading') tbInit();
+</script>
+
+</div>
+
+<!-- TAB 5: キャプテン選び -->
+<div class="tab-content content5">
+  <div class="card">
+    <div style="font-size:.85rem;font-weight:700;color:#1a5276;margin-bottom:6px">📅 日程選択</div>
+    <select id="cp-session" class="tb-input"></select>
+  </div>
+
+  <div class="card">
+    <div class="cp-row">
+      <div style="font-size:.85rem;font-weight:700;color:#1a5276">🎯 キャプテン人数</div>
+      <select id="cp-count" class="tb-input">
+        <option value="1" selected>1名</option>
+        <option value="2">2名</option>
+        <option value="3">3名</option>
+        <option value="4">4名</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="cp-display" id="cp-display">
+    <div class="cp-result-prefix" id="cp-prefix">本日のキャプテンは...</div>
+    <div class="cp-result-name" id="cp-name">？</div>
+    <div class="cp-result-grade" id="cp-grade"></div>
+  </div>
+
+  <button class="cp-roulette-btn" id="cp-spin-btn" onclick="cpSpin()">🎲 ルーレット開始</button>
+
+  <div class="card">
+    <div style="font-size:.8rem;font-weight:700;color:#1a5276;margin-bottom:4px">候補者 <span id="cp-count-info" style="font-size:.7rem;color:#7f8c8d;font-weight:400"></span></div>
+    <div style="font-size:.7rem;color:#7f8c8d;margin-bottom:4px">タップで除外/復活（一時的に対象外にできます）</div>
+    <div class="cp-pool" id="cp-pool"></div>
+  </div>
+
+  <div class="card" style="display:none" id="cp-history-card">
+    <div style="font-size:.8rem;font-weight:700;color:#1a5276;margin-bottom:4px">履歴（過去のキャプテン）</div>
+    <div class="cp-history" id="cp-history"></div>
+    <button class="tb-btn reset" onclick="cpClearHistory()" style="margin-top:6px">履歴クリア</button>
+  </div>
+
+<script>
+const CP_SESSIONS = [{"key": "4/1", "label": "4/1（水） 18:00-19:30@柳北", "participants": [{"name": "Misha jain", "grade": 4}, {"name": "中村れい", "grade": 3}, {"name": "今田ともか", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "中野日々", "grade": 2}, {"name": "西井あきのり", "grade": 2}, {"name": "久信田もとい", "grade": 1}]}, {"key": "4/4", "label": "4/4（土） 18:00-19:30@台東リバーサイドSC第1 🏆", "participants": [{"name": "いそみすず", "grade": 3}, {"name": "だいし", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "内堀こう", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "牧かるま", "grade": 1}]}, {"key": "4/5j", "label": "4/5（日） 10:00-12:00@たなか 🏃", "participants": [{"name": "中村れい", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "及川しゅん", "grade": 2}, {"name": "牧かるま", "grade": 1}]}, {"key": "4/7", "label": "4/7（火） 18:00-19:30@柳北", "participants": [{"name": "だいし", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "今田ともか", "grade": 3}, {"name": "清水けいいち", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "しおん", "grade": 2}, {"name": "のもとまひろ", "grade": 2}, {"name": "千葉かずり", "grade": 2}, {"name": "及川しゅん", "grade": 2}, {"name": "久信田もとい", "grade": 1}, {"name": "牧かるま", "grade": 1}]}, {"key": "4/8", "label": "4/8（水） 18:00-19:30@柳北", "participants": [{"name": "Misha jain", "grade": 4}, {"name": "Aadhya Singhal", "grade": 3}, {"name": "だいし", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "今田ともか", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "中野日々", "grade": 2}, {"name": "濱名いと", "grade": 2}, {"name": "西井あきのり", "grade": 2}, {"name": "久信田もとい", "grade": 1}, {"name": "牧かるま", "grade": 1}, {"name": "角野友基", "grade": 1}]}, {"key": "4/10", "label": "4/10（金） 18:00-19:30@育英小", "participants": [{"name": "中村れい", "grade": 3}, {"name": "清水けいいち", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "のもとまひろ", "grade": 2}, {"name": "並木だいち", "grade": 2}, {"name": "中野日々", "grade": 2}, {"name": "千葉かずり", "grade": 2}, {"name": "及川しゅん", "grade": 2}, {"name": "牧かるま", "grade": 1}]}, {"key": "4/12j", "label": "4/12（日） 13:30-16:30@たなか 🏃", "participants": [{"name": "中村れい", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "牧かるま", "grade": 1}]}, {"key": "4/15", "label": "4/15（水） 18:00-19:30@柳北", "participants": [{"name": "Misha jain", "grade": 4}, {"name": "Aadhya Singhal", "grade": 3}, {"name": "だいし", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "今田ともか", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "かじはら ゆきのじょう", "grade": 2}, {"name": "のもとまひろ", "grade": 2}, {"name": "並木だいち", "grade": 2}, {"name": "中野日々", "grade": 2}, {"name": "及川しゅん", "grade": 2}, {"name": "濱名いと", "grade": 2}, {"name": "西井あきのり", "grade": 2}, {"name": "久信田もとい", "grade": 1}, {"name": "牧かるま", "grade": 1}, {"name": "角野友基", "grade": 1}]}, {"key": "4/18", "label": "4/18（土） 13:00-14:30@育英小", "participants": [{"name": "いそみすず", "grade": 3}, {"name": "だいし", "grade": 3}, {"name": "内堀こう", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "いそむらちさ", "grade": 2}, {"name": "のもとまひろ", "grade": 2}, {"name": "ますだあおい", "grade": 2}, {"name": "並木だいち", "grade": 2}, {"name": "中野日々", "grade": 2}, {"name": "及川しゅん", "grade": 2}]}, {"key": "4/20", "label": "4/20（月） 18:00-19:30@柳北", "participants": [{"name": "Misha jain", "grade": 4}, {"name": "いそみすず", "grade": 3}, {"name": "ミヤタエイト", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "今田ともか", "grade": 3}, {"name": "清水けいいち", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "いそむらちさ", "grade": 2}, {"name": "かじはら ゆきのじょう", "grade": 2}, {"name": "並木だいち", "grade": 2}, {"name": "中野日々", "grade": 2}, {"name": "及川しゅん", "grade": 2}, {"name": "西井あきのり", "grade": 2}, {"name": "久信田もとい", "grade": 1}]}, {"key": "4/24", "label": "4/24（金） 18:00-19:30@育英小", "participants": [{"name": "いそみすず", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "今田ともか", "grade": 3}, {"name": "清水けいいち", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "しおん", "grade": 2}, {"name": "のもとまひろ", "grade": 2}, {"name": "並木だいち", "grade": 2}, {"name": "中野日々", "grade": 2}, {"name": "千葉かずり", "grade": 2}, {"name": "及川しゅん", "grade": 2}, {"name": "濱名いと", "grade": 2}, {"name": "道口えま", "grade": 2}, {"name": "久信田もとい", "grade": 1}, {"name": "牧かるま", "grade": 1}, {"name": "角野友基", "grade": 1}]}, {"key": "4/27", "label": "4/27（月） 18:00-19:15@柳北 🌳", "participants": [{"name": "Aadhya Singhal", "grade": 3}, {"name": "いそみすず", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "いそむらちさ", "grade": 2}, {"name": "かじはら ゆきのじょう", "grade": 2}, {"name": "並木だいち", "grade": 2}, {"name": "千葉かずり", "grade": 2}, {"name": "及川しゅん", "grade": 2}, {"name": "久信田もとい", "grade": 1}, {"name": "角野友基", "grade": 1}]}, {"key": "4/28", "label": "4/28（火） 18:00-19:30@柳北", "participants": [{"name": "いそみすず", "grade": 3}, {"name": "だいし", "grade": 3}, {"name": "ミヤタエイト", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "今田ともか", "grade": 3}, {"name": "清水けいいち", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "米倉のぞみ", "grade": 3}, {"name": "ますだあおい", "grade": 2}, {"name": "中野日々", "grade": 2}, {"name": "濱名いと", "grade": 2}, {"name": "西井あきのり", "grade": 2}, {"name": "久信田もとい", "grade": 1}, {"name": "牧かるま", "grade": 1}]}, {"key": "4/29", "label": "4/29（水-祝） 9:00-10:30@たなか", "participants": [{"name": "いそみすず", "grade": 3}, {"name": "だいし", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "内堀こう", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "かじはら ゆきのじょう", "grade": 2}, {"name": "並木だいち", "grade": 2}, {"name": "牧かるま", "grade": 1}]}, {"key": "4/29j", "label": "4/29（水-祝） 10:30-12:00@たなか 🏃", "participants": [{"name": "だいし", "grade": 3}, {"name": "中村れい", "grade": 3}, {"name": "内堀こう", "grade": 3}, {"name": "牧かいと", "grade": 3}, {"name": "並木だいち", "grade": 2}, {"name": "牧かるま", "grade": 1}]}];
+let cpKey = null, cpExcluded = new Set(), cpCaptains = [], cpSpinning = false;
+
+function cpInit(){
+  const sel = document.getElementById('cp-session');
+  CP_SESSIONS.forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s.key; opt.textContent = s.label;
+    sel.appendChild(opt);
+  });
+  sel.addEventListener('change', () => cpLoad(sel.value));
+  if (CP_SESSIONS.length){ sel.value = CP_SESSIONS[0].key; cpLoad(CP_SESSIONS[0].key); }
+}
+
+function cpLoad(key){
+  cpKey = key;
+  const saved = localStorage.getItem(`cp_${key}`);
+  cpExcluded = new Set(saved ? JSON.parse(saved).excluded || [] : []);
+  cpCaptains = [];
+  cpRender();
+  cpResetDisplay();
+}
+
+function cpSave(){
+  localStorage.setItem(`cp_${cpKey}`, JSON.stringify({excluded: [...cpExcluded]}));
+}
+
+function cpEsc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+function cpAvail(){
+  const sess = CP_SESSIONS.find(s => s.key === cpKey);
+  return sess.participants.filter(p => !cpExcluded.has(p.name));
+}
+
+function cpRender(){
+  const sess = CP_SESSIONS.find(s => s.key === cpKey);
+  const pool = document.getElementById('cp-pool');
+  pool.innerHTML = '';
+  sess.participants.forEach(p => {
+    const span = document.createElement('span');
+    const g = p.grade || 0;
+    span.className = `cp-name g${g}` + (cpExcluded.has(p.name) ? ' excluded' : '') + (cpCaptains.some(c => c.name === p.name) ? ' captain' : '');
+    span.dataset.name = p.name;
+    span.innerHTML = `<span class="cp-grade-tag">${g||'?'}</span>${cpEsc(p.name)}`;
+    span.onclick = () => {
+      if (cpSpinning) return;
+      if (cpExcluded.has(p.name)) cpExcluded.delete(p.name);
+      else cpExcluded.add(p.name);
+      cpSave(); cpRender();
+    };
+    pool.appendChild(span);
+  });
+  const total = sess.participants.length;
+  const avail = cpAvail().length;
+  document.getElementById('cp-count-info').textContent = `(${avail}/${total}名)`;
+
+  // History
+  const hist = JSON.parse(localStorage.getItem(`cp_hist_${cpKey}`) || '[]');
+  const hcard = document.getElementById('cp-history-card');
+  const hel = document.getElementById('cp-history');
+  if (hist.length === 0){
+    hcard.style.display = 'none';
+  } else {
+    hcard.style.display = 'block';
+    hel.innerHTML = hist.map(h => `<span class="cp-history-item">${cpEsc(h.name)}</span>`).join('');
+  }
+}
+
+function cpResetDisplay(){
+  const disp = document.getElementById('cp-display');
+  disp.classList.remove('spinning', 'done');
+  document.getElementById('cp-prefix').textContent = '本日のキャプテンは...';
+  document.getElementById('cp-name').textContent = '？';
+  document.getElementById('cp-grade').textContent = '';
+  const btn = document.getElementById('cp-spin-btn');
+  btn.textContent = '🎲 ルーレット開始';
+  btn.classList.remove('again');
+  btn.disabled = false;
+}
+
+function cpSpin(){
+  if (cpSpinning) return;
+  const N = parseInt(document.getElementById('cp-count').value);
+  const avail = cpAvail();
+  if (avail.length < N){
+    alert(`候補者が${avail.length}名しかいません。${N}名選べません。`);
+    return;
+  }
+  cpSpinning = true;
+  cpCaptains = [];
+  // Pick N unique random captains
+  const pool = [...avail];
+  for (let i = 0; i < N; i++){
+    const idx = Math.floor(Math.random() * pool.length);
+    cpCaptains.push(pool.splice(idx, 1)[0]);
+  }
+
+  const disp = document.getElementById('cp-display');
+  disp.classList.add('spinning'); disp.classList.remove('done');
+  document.getElementById('cp-prefix').textContent = '🎲 抽選中...';
+  const btn = document.getElementById('cp-spin-btn');
+  btn.disabled = true;
+
+  // Animation: rapid name cycling, slow down, stop
+  let elapsed = 0;
+  const total = 2200;
+  function tick(){
+    if (elapsed >= total){
+      // Done
+      disp.classList.remove('spinning'); disp.classList.add('done');
+      document.getElementById('cp-prefix').textContent = N === 1 ? '🎉 本日のキャプテンは' : `🎉 本日のキャプテン${N}名`;
+      const namesDisp = cpCaptains.map(c => c.name).join(' / ');
+      const gradesDisp = cpCaptains.map(c => `${c.grade||'?'}年 ${c.name}`).join(' / ');
+      document.getElementById('cp-name').textContent = namesDisp;
+      document.getElementById('cp-grade').textContent = gradesDisp;
+      // Save to history
+      const hist = JSON.parse(localStorage.getItem(`cp_hist_${cpKey}`) || '[]');
+      cpCaptains.forEach(c => hist.unshift({name: c.name, grade: c.grade, ts: Date.now()}));
+      localStorage.setItem(`cp_hist_${cpKey}`, JSON.stringify(hist.slice(0, 30)));
+      cpRender();
+      btn.textContent = '🔁 もう一回';
+      btn.classList.add('again');
+      btn.disabled = false;
+      cpSpinning = false;
+      return;
+    }
+    // Cycle a random name from full participant list
+    const sess = CP_SESSIONS.find(s => s.key === cpKey);
+    const all = sess.participants.filter(p => !cpExcluded.has(p.name));
+    const pick = all[Math.floor(Math.random() * all.length)];
+    document.getElementById('cp-name').textContent = pick ? pick.name : '？';
+    document.getElementById('cp-grade').textContent = pick ? `${pick.grade||'?'}年` : '';
+    // Slow down progressively
+    const progress = elapsed / total;
+    const interval = 60 + Math.pow(progress, 2) * 250; // 60ms → 310ms
+    elapsed += interval;
+    setTimeout(tick, interval);
+  }
+  tick();
+}
+
+function cpClearHistory(){
+  if (!confirm('この日程のキャプテン履歴を全て削除します。よろしいですか？')) return;
+  localStorage.removeItem(`cp_hist_${cpKey}`);
+  cpRender();
+}
+
+document.addEventListener('DOMContentLoaded', cpInit);
+if (document.readyState !== 'loading') cpInit();
 </script>
 
 </div>
