@@ -14,9 +14,9 @@
   .tabs{display:flex;gap:0;margin-bottom:0;border-radius:12px 12px 0 0;overflow:hidden}
   .tabs input[type="radio"]{display:none}
   .tabs label{flex:1;text-align:center;padding:11px 4px;font-size:0.78rem;font-weight:600;cursor:pointer;background:#d5e8f0;color:#5a7a8a;transition:all .2s}
-  #tab1:checked~.tabs label[for="tab1"],#tab2:checked~.tabs label[for="tab2"],#tab4:checked~.tabs label[for="tab4"],#tab5:checked~.tabs label[for="tab5"]{background:#fff;color:#1a5276;box-shadow:0 -2px 0 #2e86c1 inset}
+  #tab1:checked~.tabs label[for="tab1"],#tab2:checked~.tabs label[for="tab2"],#tab4:checked~.tabs label[for="tab4"],#tab5:checked~.tabs label[for="tab5"],#tab6:checked~.tabs label[for="tab6"]{background:#fff;color:#1a5276;box-shadow:0 -2px 0 #2e86c1 inset}
   .tab-content{display:none;background:#fff;border-radius:0 0 12px 12px;padding:12px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
-  #tab1:checked~.tab-content.content1,#tab2:checked~.tab-content.content2,#tab4:checked~.tab-content.content4,#tab5:checked~.tab-content.content5{display:block}
+  #tab1:checked~.tab-content.content1,#tab2:checked~.tab-content.content2,#tab4:checked~.tab-content.content4,#tab5:checked~.tab-content.content5,#tab6:checked~.tab-content.content6{display:block}
   .card{border:1px solid #e8eef3;border-radius:10px;padding:12px;margin-bottom:10px;background:#fafcfe}
   .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
   .date{font-weight:700;font-size:.95rem;color:#1a5276}
@@ -107,6 +107,16 @@
   .tb-action-bar-buttons{display:flex;gap:6px;flex-wrap:wrap}
   .tb-move-btn{flex:1 1 auto;min-width:90px;padding:10px 12px;border:none;border-radius:8px;font-size:.78rem;font-weight:600;cursor:pointer;color:#fff;background:#3498db}
   .tb-move-btn.pool{background:#7f8c8d}
+  /* Messages (tab6) */
+  .msg-section{margin-bottom:14px}
+  .msg-bulk-bar{display:flex;gap:8px;align-items:center;margin-bottom:14px;padding:10px;background:#e8f4fd;border-radius:8px;border:1px solid #aed6f1}
+  .msg-bulk-bar button{padding:8px 14px;background:#2e86c1;color:#fff;border:none;border-radius:6px;font-size:.85rem;font-weight:600;cursor:pointer}
+  .msg-bulk-bar button:hover{background:#1a5276}
+  .msg-card{background:#fff;border:1px solid #d5dbdb;border-radius:8px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .msg-card pre{margin:0;flex:1;font-family:inherit;font-size:.82rem;white-space:pre-wrap;color:#2c3e50;line-height:1.5}
+  .msg-card button{padding:6px 10px;background:#27ae60;color:#fff;border:none;border-radius:5px;font-size:.78rem;font-weight:600;cursor:pointer;flex-shrink:0}
+  .msg-card button:hover{background:#1e8449}
+  .msg-card button.copied{background:#7f8c8d}
   /* Captain roulette (tab5) */
   .cp-display{background:linear-gradient(135deg,#fef9e7,#fdf2e9);border:3px solid #f39c12;border-radius:14px;padding:20px;text-align:center;margin:10px 0;min-height:90px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;overflow:hidden}
   .cp-display.spinning{border-color:#3498db;background:linear-gradient(135deg,#eef7fc,#fef9e7)}
@@ -131,9 +141,9 @@
 </head>
 <body>
 <h1>🏀 5月 低学年スケジュール</h1>
-<p class="subtitle">コーチ配置表（全11回）｜ 更新: 2026/05/06 09:57</p>
-<input type="radio" name="tab" id="tab1" checked><input type="radio" name="tab" id="tab2"><input type="radio" name="tab" id="tab4"><input type="radio" name="tab" id="tab5">
-<div class="tabs"><label for="tab1">📋 スケジュール</label><label for="tab2">👤 担当</label><label for="tab4">🏆 チーム分け</label><label for="tab5">🎯 キャプテン</label></div>
+<p class="subtitle">コーチ配置表（全11回）｜ 更新: 2026/05/06 10:46</p>
+<input type="radio" name="tab" id="tab1" checked><input type="radio" name="tab" id="tab2"><input type="radio" name="tab" id="tab4"><input type="radio" name="tab" id="tab5"><input type="radio" name="tab" id="tab6">
+<div class="tabs"><label for="tab1">📋 スケジュール</label><label for="tab2">👤 担当</label><label for="tab4">🏆 チーム分け</label><label for="tab5">🎯 キャプテン</label><label for="tab6">📩 メッセージ</label></div>
 
 <!-- TAB 1 -->
 <div class="tab-content content1">
@@ -159,84 +169,75 @@
     <div class="jishu-note">※ 高学年 4名 + 中高生 3名 = 7名 も参加</div>
     <div class="supporters">🤝 サポーター（1名）: <span class="sup-name">中村ダイアン</span></div>
     <div class="kounen"><div class="kounen-title">📌 同日の高学年 10:30-12:00 和泉小</div><div class="kounen-participants">高学年 4名 + 中高生 3名 = 7名</div><span>あおき △</span></div></div>
-  <div class="card cancelled-card"><div class="card-header"><span class="date">5/6（水-振）<span class="diff-badge">更新 5/6</span></span><span class="badge cancelled">🚫 中止</span></div>
+  <div class="card cancelled-card"><div class="card-header"><span class="date">5/6（水-振）</span><span class="badge cancelled">🚫 中止</span></div>
     <div class="cancelled-notice">🚫 このセッションは中止になりました（参加者少数のため）</div>
     <div class="venue">🕙 10:00-11:30 ｜ 📍 たなか</div>
     <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name not-needed">未定</span></div>
     <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年1</span></div><span class="g3">みすず</span></div>
     <div class="supporters">🤝 サポーター: <span class="sup-none">なし</span></div>
     <div class="kounen"><div class="kounen-title">📌 同日の高学年 18:30-20:30 浅中</div><div class="kounen-participants">高学年 16名 + 中高生 3名 = 19名</div><span>山科 ◯</span><span>あおき ◯</span></div>
-    <div class="diff-detail">📝 高学年 14名→16名</div>
   </div>
-  <div class="card"><div class="card-header"><span class="date">② 5/8（金）<span class="diff-badge">更新 5/6</span></span><span class="badge">16名</span></div>
+  <div class="card"><div class="card-header"><span class="date">② 5/8（金）</span><span class="badge">16名</span></div>
     <div class="venue">🕕 18:00-19:30 ｜ 📍 育英小</div>
     <div class="available">参加可能: <span>牧てつや <small>👦かいと・かるま</small></span><span>山科</span><span>及川和馬 <small>👦しゅん</small></span><span>中野秀則 <small>👦日々</small></span></div>
     <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name not-needed">未定</span></div>
     <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年6</span> <span class="grade-label gl2">2年7</span> <span class="grade-label gl1">1年3</span></div><span class="g3">れい</span><span class="g3">だいし</span><span class="g3">のぞみ</span><span class="g3">ともか</span><span class="g3">みすず</span><span class="g3">かいと</span><span class="g2">しゅん</span><span class="g2">いと</span><span class="g2">あおい</span><span class="g2">日々</span><span class="g2">だいち</span><span class="g2">ゆきのじょう</span><span class="g2">かずり</span><span class="g1">ともき</span><span class="g1">もとい</span><span class="g1">かるま</span></div>
     <div class="supporters">🤝 サポーター（1名）: <span class="sup-name">中村ダイアン</span></div>
     <div class="kounen"><div class="kounen-title">📌 同日の高学年 19:30-21:00 育英小</div><div class="kounen-participants">高学年 21名 + 中高生 5名 = 26名</div><span>山科 ◯</span><span>及川和馬 ◯</span></div>
-    <div class="diff-detail">📝 低学年 追加: なみきだいち ／ 低学年 15名→16名 ／ 中高生 4名→5名</div>
   </div>
-  <div class="card"><div class="card-header"><span class="date">③ 5/9（土）<span class="diff-badge">更新 5/6</span></span><span class="badge">3名</span></div>
+  <div class="card"><div class="card-header"><span class="date">③ 5/9（土）</span><span class="badge">3名</span></div>
     <div class="venue">🕐 13:00-14:30 ｜ 📍 育英小</div>
     <div class="available">参加可能: <span>及川和馬 <small>👦しゅん</small></span><span>あおき</span><span>中野秀則</span></div>
     <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name not-needed">未定</span></div>
     <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl2">2年2</span> <span class="grade-label gl1">1年1</span></div><span class="g2">しゅん</span><span class="g2">だいち</span><span class="g1">もとい</span></div>
     <div class="supporters">🤝 サポーター（1名）: <span class="sup-name">久信田きほ</span></div>
     <div class="kounen"><div class="kounen-title">📌 同日の高学年 14:30-16:30 育英小</div><div class="kounen-participants">高学年 10名 + 中高生 3名 = 13名</div><span>たかひろ ◯</span><span>及川和馬 ◯</span><span>あおき ◯</span></div>
-    <div class="diff-detail">📝 低学年 追加: なみきだいち ／ 低学年 削除: いそむらちさ</div>
   </div>
-  <div class="card"><div class="card-header"><span class="date">④ 5/10（日）<span class="diff-badge">更新 5/6</span></span><span class="badge gameday">GameDay 6名</span></div>
+  <div class="card"><div class="card-header"><span class="date">④ 5/10（日）</span><span class="badge gameday">GameDay 6名</span></div>
     <div class="venue">🕙 10:00-11:30 ｜ 📍 たなか</div>
     <div class="available">参加可能: <span>牧てつや <small>👦かいと・かるま</small></span><span>あおき</span></div>
     <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name not-needed">未定</span></div>
     <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年3</span> <span class="grade-label gl2">2年2</span> <span class="grade-label gl1">1年1</span></div><span class="g3">れい</span><span class="g3">みすず</span><span class="g3">かいと</span><span class="g2">だいち</span><span class="g2">ゆきのじょう</span><span class="g1">かるま</span></div>
     <div class="supporters">🤝 サポーター（1名）: <span class="sup-name">中村ダイアン</span></div>
     <div class="kounen"><div class="kounen-title">📌 同日の高学年 GameDay 14:00-16:00 たなか</div><div class="kounen-participants">高学年 11名 + 中高生 3名 = 14名</div><span>たかひろ ◯</span><span>あおき ◯</span><span>シュン吉 △</span></div>
-    <div class="diff-detail">📝 低学年 追加: なみきだいち ／ 低学年 5名→6名 ／ 中高生 2名→3名</div>
   </div>
-  <div class="jishu-card"><div class="jishu-header"><span class="jishu-title">🏃 自主練 5/10（日） <span class="diff-badge">更新 5/6</span></span><span class="jishu-badge">低学年 2名</span></div>
+  <div class="jishu-card"><div class="jishu-header"><span class="jishu-title">🏃 自主練 5/10（日）</span><span class="jishu-badge">低学年 2名</span></div>
     <div class="jishu-venue">🕐 11:30-13:30 ｜ 📍 たなか ｜ 全学年対象・コーチ不要</div>
     <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年1</span> <span class="grade-label gl2">2年1</span></div><span class="g3">れい</span><span class="g2">だいち</span></div>
     <div class="jishu-note">※ 高学年 11名 + 中高生 3名 = 14名 も参加</div>
     <div class="supporters">🤝 サポーター（2名）: <span class="sup-name">中村ダイアン</span><span class="sup-name">ちか</span></div>
-    <div class="kounen"><div class="kounen-title">📌 同日の高学年 14:00-16:00 たなか</div><div class="kounen-participants">高学年 11名 + 中高生 3名 = 14名</div><span>たかひろ ◯</span><span>あおき ◯</span><span>シュン吉 △</span></div>
-    <div class="diff-detail">📝 低学年 追加: なみきだいち ／ 低学年 1名→2名 ／ 中高生 2名→3名</div></div>
-  <div class="card"><div class="card-header"><span class="date">⑤ 5/11（月）<span class="diff-badge">更新 5/6</span></span><span class="badge">14名</span></div>
+    <div class="kounen"><div class="kounen-title">📌 同日の高学年 14:00-16:00 たなか</div><div class="kounen-participants">高学年 11名 + 中高生 3名 = 14名</div><span>たかひろ ◯</span><span>あおき ◯</span><span>シュン吉 △</span></div></div>
+  <div class="card"><div class="card-header"><span class="date">⑤ 5/11（月）</span><span class="badge">14名</span></div>
     <div class="venue">🕕 18:00-19:30 ｜ 📍 柳北</div>
     <div class="available">参加可能: <span>中野秀則 <small>👦日々</small></span></div>
     <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name not-needed">未定</span></div>
     <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl4">4年1</span> <span class="grade-label gl3">3年4</span> <span class="grade-label gl2">2年7</span> <span class="grade-label gl1">1年2</span></div><span class="g4">Misha</span><span class="g3">れい</span><span class="g3">のぞみ</span><span class="g3">みすず</span><span class="g3">けいいち</span><span class="g2">あきのり</span><span class="g2">しゅん</span><span class="g2">ちさ</span><span class="g2">いと</span><span class="g2">日々</span><span class="g2">ゆきのじょう</span><span class="g2">かずり</span><span class="g1">ともき</span><span class="g1">もとい</span></div>
     <div class="supporters">🤝 サポーター（2名）: <span class="sup-name">久信田きほ</span><span class="sup-name">中村ダイアン</span></div>
     <div class="kounen"><div class="kounen-title">📌 同日の高学年 19:30-21:00 柳北</div><div class="kounen-participants">高学年 25名 + 中高生 4名 = 29名</div><span>シュン吉 ◯</span></div>
-    <div class="diff-detail">📝 低学年 追加: 清水けいいち ／ 低学年 13名→14名</div>
   </div>
-  <div class="card"><div class="card-header"><span class="date">⑥ 5/17（日）<span class="diff-badge">更新 5/6</span></span><span class="badge">6名</span></div>
+  <div class="card"><div class="card-header"><span class="date">⑥ 5/17（日）</span><span class="badge">6名</span></div>
     <div class="venue">🕕 18:00-19:20 ｜ 📍 昌平童夢館</div>
     <div class="available">参加可能: <span>山科</span><span>及川和馬 <small>👦しゅん</small></span><span>あおき</span></div>
     <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name not-needed">未定</span></div>
     <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年4</span> <span class="grade-label gl2">2年1</span> <span class="grade-label gl1">1年1</span></div><span class="g3">れい</span><span class="g3">のぞみ</span><span class="g3">ともか</span><span class="g3">みすず</span><span class="g2">しゅん</span><span class="g1">もとい</span></div>
     <div class="supporters">🤝 サポーター（2名）: <span class="sup-name">久信田きほ</span><span class="sup-name">中村ダイアン</span></div>
     <div class="kounen"><div class="kounen-title">📌 同日の高学年 19:30-20:50 昌平童夢館</div><div class="kounen-participants">高学年 14名 + 中高生 2名 = 16名</div><span>山科 ◯</span><span>あおき ◯</span></div>
-    <div class="diff-detail">📝 中高生 1名→2名</div>
   </div>
-  <div class="card"><div class="card-header"><span class="date">⑦ 5/18（月）<span class="diff-badge">更新 5/6</span></span><span class="badge">12名</span></div>
+  <div class="card"><div class="card-header"><span class="date">⑦ 5/18（月）</span><span class="badge">12名</span></div>
     <div class="venue">🕕 18:00-19:30 ｜ 📍 柳北</div>
     <div class="available">参加可能: <span>中野秀則</span></div>
     <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name not-needed">未定</span></div>
     <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl4">4年1</span> <span class="grade-label gl3">3年4</span> <span class="grade-label gl2">2年5</span> <span class="grade-label gl1">1年2</span></div><span class="g4">Misha</span><span class="g3">れい</span><span class="g3">ともか</span><span class="g3">みすず</span><span class="g3">けいいち</span><span class="g2">あきのり</span><span class="g2">ちさ</span><span class="g2">いと</span><span class="g2">ゆきのじょう</span><span class="g2">かずり</span><span class="g1">ともき</span><span class="g1">もとい</span></div>
     <div class="supporters">🤝 サポーター（1名）: <span class="sup-name">中村ダイアン</span></div>
     <div class="kounen"><div class="kounen-title">📌 同日の高学年 19:30-21:00 柳北</div><div class="kounen-participants">高学年 21名 + 中高生 3名 = 24名</div><span>シュン吉 △</span></div>
-    <div class="diff-detail">📝 低学年 追加: 清水けいいち ／ 低学年 11名→12名 ／ 高学年 22名→21名</div>
   </div>
-  <div class="card"><div class="card-header"><span class="date">⑧ 5/22（金）<span class="diff-badge">更新 5/6</span></span><span class="badge">14名</span></div>
+  <div class="card"><div class="card-header"><span class="date">⑧ 5/22（金）</span><span class="badge">14名</span></div>
     <div class="venue">🕕 18:00-19:30 ｜ 📍 育英小</div>
     <div class="available">参加可能: <span>中野秀則 <small>👦日々</small></span></div>
     <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name not-needed">未定</span></div>
     <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年7</span> <span class="grade-label gl2">2年4</span> <span class="grade-label gl1">1年3</span></div><span class="g3">れい</span><span class="g3">だいし</span><span class="g3">のぞみ</span><span class="g3">ともか</span><span class="g3">みすず</span><span class="g3">かいと</span><span class="g3">けいいち</span><span class="g2">いと</span><span class="g2">日々</span><span class="g2">ゆきのじょう</span><span class="g2">かずり</span><span class="g1">ともき</span><span class="g1">もとい</span><span class="g1">かるま</span></div>
     <div class="supporters">🤝 サポーター（2名）: <span class="sup-name">久信田きほ</span><span class="sup-name">中村ダイアン</span></div>
     <div class="kounen"><div class="kounen-title">📌 同日の高学年 19:30-21:00 育英小</div><div class="kounen-participants">高学年 20名 + 中高生 3名 = 23名</div></div>
-    <div class="diff-detail">📝 低学年 追加: 清水けいいち ／ 低学年 13名→14名</div>
   </div>
   <div class="card"><div class="card-header"><span class="date">⑨ 5/25（月）</span><span class="badge">11名</span></div>
     <div class="venue">🕕 18:00-19:30 ｜ 📍 柳北</div>
@@ -246,23 +247,21 @@
     <div class="supporters">🤝 サポーター（1名）: <span class="sup-name">中村ダイアン</span></div>
     <div class="kounen"><div class="kounen-title">📌 同日の高学年 19:30-21:00 柳北</div><div class="kounen-participants">高学年 22名 + 中高生 3名 = 25名</div><span>シュン吉 ◯</span><span>山科 ◯</span><span>及川和馬 ◯</span></div>
   </div>
-  <div class="card"><div class="card-header"><span class="date">⑩ 5/27（水）<span class="diff-badge">更新 5/6</span></span><span class="badge">12名</span></div>
+  <div class="card"><div class="card-header"><span class="date">⑩ 5/27（水）</span><span class="badge">12名</span></div>
     <div class="venue">🕕 18:00-19:30 ｜ 📍 柳北</div>
     <div class="available">参加可能: <span>牧てつや <small>👦かいと・かるま</small></span><span>山科</span><span>中野秀則 <small>👦日々</small></span></div>
     <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name not-needed">未定</span></div>
     <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl4">4年1</span> <span class="grade-label gl3">3年4</span> <span class="grade-label gl2">2年4</span> <span class="grade-label gl1">1年3</span></div><span class="g4">Misha</span><span class="g3">れい</span><span class="g3">だいし</span><span class="g3">ともか</span><span class="g3">かいと</span><span class="g2">あきのり</span><span class="g2">いと</span><span class="g2">日々</span><span class="g2">ゆきのじょう</span><span class="g1">ともき</span><span class="g1">もとい</span><span class="g1">かるま</span></div>
     <div class="supporters">🤝 サポーター（1名）: <span class="sup-name">中村ダイアン</span></div>
     <div class="kounen"><div class="kounen-title">📌 同日の高学年 18:30-20:30 浅中</div><div class="kounen-participants">高学年 20名 + 中高生 13名 = 33名</div><span>SO ◯</span></div>
-    <div class="diff-detail">📝 中高生 12名→13名</div>
   </div>
-  <div class="card"><div class="card-header"><span class="date">⑪ 5/29（金）<span class="diff-badge">更新 5/6</span></span><span class="badge">15名</span></div>
+  <div class="card"><div class="card-header"><span class="date">⑪ 5/29（金）</span><span class="badge">15名</span></div>
     <div class="venue">🕕 18:00-19:30 ｜ 📍 育英小</div>
     <div class="available">参加可能: <span>牧てつや <small>👦かいと・かるま</small></span><span>中野秀則 <small>👦日々</small></span></div>
     <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name not-needed">未定</span></div>
     <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年6</span> <span class="grade-label gl2">2年6</span> <span class="grade-label gl1">1年3</span></div><span class="g3">れい</span><span class="g3">だいし</span><span class="g3">のぞみ</span><span class="g3">みすず</span><span class="g3">かいと</span><span class="g3">けいいち</span><span class="g2">しゅん</span><span class="g2">いと</span><span class="g2">あおい</span><span class="g2">日々</span><span class="g2">ゆきのじょう</span><span class="g2">かずり</span><span class="g1">ともき</span><span class="g1">もとい</span><span class="g1">かるま</span></div>
     <div class="supporters">🤝 サポーター（1名）: <span class="sup-name">中村ダイアン</span></div>
     <div class="kounen"><div class="kounen-title">📌 同日の高学年 19:30-21:00 育英小</div><div class="kounen-participants">高学年 19名 + 中高生 6名 = 25名</div></div>
-    <div class="diff-detail">📝 低学年 追加: 清水けいいち ／ 低学年 14名→15名 ／ 中高生 5名→6名</div>
   </div>
 
   <div class="legend">💡 参加可能 = 調整さんで◯のコーチ ／ 担当 = アサイン済みコーチ<br>👦 = アサインされたコーチの子供が参加しているか<br>📌 = 同日の高学年セッションの参加可能コーチ・参加者数を表示<br>📝 = Diane メモ ／ 🏃 = 自主練（コーチ不要・参考情報）<br><span class="grade-label gl4">4年</span> <span class="grade-label gl3">3年</span> <span class="grade-label gl2">2年</span> <span class="grade-label gl1">1年</span></div>
@@ -726,6 +725,90 @@ function cpClearHistory(){
 
 document.addEventListener('DOMContentLoaded', cpInit);
 if (document.readyState !== 'loading') cpInit();
+</script>
+
+</div>
+
+<!-- TAB 6: メッセージ -->
+<div class="tab-content content6">
+  <div class="msg-section">
+    <div class="msg-bulk-bar">
+      <button onclick="copyMsgBulk(this)">📋 全部まとめてコピー</button>
+      <span style="font-size:.78rem;color:#5d6d7e">各日程のメッセージを2日前を目安に関係者へ送信してください</span>
+    </div>
+    <pre id="msg_bulk" style="display:none">◎ 5/1（金） 18:00-19:30 ＠育英　（参加者11名）
+→牧コーチ
+
+◎ 5/8（金） 18:00-19:30 ＠育英　（参加者16名）
+→未定
+
+◎ 5/9（土） 13:00-14:30 ＠育英　（参加者3名）
+→未定
+
+◎ 5/10（日） 10:00-11:30 ＠たなか　（参加者6名）
+→未定
+
+◎ 5/11（月） 18:00-19:30 ＠柳北　（参加者14名）
+→未定
+
+◎ 5/17（日） 18:00-19:20 ＠昌平童夢館　（参加者6名）
+→未定
+
+◎ 5/18（月） 18:00-19:30 ＠柳北　（参加者12名）
+→未定
+
+◎ 5/22（金） 18:00-19:30 ＠育英　（参加者14名）
+→未定
+
+◎ 5/25（月） 18:00-19:30 ＠柳北　（参加者11名）
+→未定
+
+◎ 5/27（水） 18:00-19:30 ＠柳北　（参加者12名）
+→未定
+
+◎ 5/29（金） 18:00-19:30 ＠育英　（参加者15名）
+→未定</pre>
+  <div class="msg-card"><pre id="msg_0">◎ 5/1（金） 18:00-19:30 ＠育英　（参加者11名）
+→牧コーチ</pre><button onclick="copyMsg('msg_0', this)">📋 コピー</button></div>
+  <div class="msg-card"><pre id="msg_1">◎ 5/8（金） 18:00-19:30 ＠育英　（参加者16名）
+→未定</pre><button onclick="copyMsg('msg_1', this)">📋 コピー</button></div>
+  <div class="msg-card"><pre id="msg_2">◎ 5/9（土） 13:00-14:30 ＠育英　（参加者3名）
+→未定</pre><button onclick="copyMsg('msg_2', this)">📋 コピー</button></div>
+  <div class="msg-card"><pre id="msg_3">◎ 5/10（日） 10:00-11:30 ＠たなか　（参加者6名）
+→未定</pre><button onclick="copyMsg('msg_3', this)">📋 コピー</button></div>
+  <div class="msg-card"><pre id="msg_4">◎ 5/11（月） 18:00-19:30 ＠柳北　（参加者14名）
+→未定</pre><button onclick="copyMsg('msg_4', this)">📋 コピー</button></div>
+  <div class="msg-card"><pre id="msg_5">◎ 5/17（日） 18:00-19:20 ＠昌平童夢館　（参加者6名）
+→未定</pre><button onclick="copyMsg('msg_5', this)">📋 コピー</button></div>
+  <div class="msg-card"><pre id="msg_6">◎ 5/18（月） 18:00-19:30 ＠柳北　（参加者12名）
+→未定</pre><button onclick="copyMsg('msg_6', this)">📋 コピー</button></div>
+  <div class="msg-card"><pre id="msg_7">◎ 5/22（金） 18:00-19:30 ＠育英　（参加者14名）
+→未定</pre><button onclick="copyMsg('msg_7', this)">📋 コピー</button></div>
+  <div class="msg-card"><pre id="msg_8">◎ 5/25（月） 18:00-19:30 ＠柳北　（参加者11名）
+→未定</pre><button onclick="copyMsg('msg_8', this)">📋 コピー</button></div>
+  <div class="msg-card"><pre id="msg_9">◎ 5/27（水） 18:00-19:30 ＠柳北　（参加者12名）
+→未定</pre><button onclick="copyMsg('msg_9', this)">📋 コピー</button></div>
+  <div class="msg-card"><pre id="msg_10">◎ 5/29（金） 18:00-19:30 ＠育英　（参加者15名）
+→未定</pre><button onclick="copyMsg('msg_10', this)">📋 コピー</button></div>
+  </div>
+<script>
+function copyMsg(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.innerText;
+    btn.innerText = '✓ コピー済';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.innerText = orig; btn.classList.remove('copied'); }, 1500);
+  });
+}
+function copyMsgBulk(btn) {
+  const text = document.getElementById("msg_bulk").innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.innerText;
+    btn.innerText = '✓ 全部コピー済';
+    setTimeout(() => { btn.innerText = orig; }, 1500);
+  });
+}
 </script>
 
 </div>
