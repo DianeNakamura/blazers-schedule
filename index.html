@@ -14,9 +14,33 @@
   .tabs{display:flex;gap:0;margin-bottom:0;border-radius:12px 12px 0 0;overflow:hidden}
   .tabs input[type="radio"]{display:none}
   .tabs label{flex:1;text-align:center;padding:11px 4px;font-size:0.78rem;font-weight:600;cursor:pointer;background:#d5e8f0;color:#5a7a8a;transition:all .2s}
-  #tab1:checked~.tabs label[for="tab1"],#tab2:checked~.tabs label[for="tab2"],#tab4:checked~.tabs label[for="tab4"],#tab5:checked~.tabs label[for="tab5"],#tab6:checked~.tabs label[for="tab6"]{background:#fff;color:#1a5276;box-shadow:0 -2px 0 #2e86c1 inset}
+  #tab1:checked~.tabs label[for="tab1"],#tab2:checked~.tabs label[for="tab2"],#tab4:checked~.tabs label[for="tab4"],#tab5:checked~.tabs label[for="tab5"],#tab6:checked~.tabs label[for="tab6"],#tab7:checked~.tabs label[for="tab7"]{background:#fff;color:#1a5276;box-shadow:0 -2px 0 #2e86c1 inset}
+  /* Attendance (tab7) */
+  .att-section{padding:4px 0}
+  .att-date-select{width:100%;padding:10px 12px;margin-bottom:14px;border:2px solid #d5dbdb;border-radius:8px;font-size:.95rem;font-weight:600;color:#1a5276;background:#fff}
+  .att-card{background:#fff;border:1px solid #e0e6e8;border-radius:10px;padding:12px 14px;margin-bottom:10px}
+  .att-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #ecf0f1}
+  .att-info{font-size:.85rem;color:#5d6d7e;font-weight:600}
+  .att-counts{display:flex;gap:14px;font-size:.78rem}
+  .att-counts b{font-size:.95rem;font-weight:900}
+  .att-present{color:#27ae60}.att-absent{color:#e74c3c}.att-pending{color:#95a5a6}
+  .att-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f4f6f7}
+  .att-row:last-child{border-bottom:none}
+  .att-name{font-size:.92rem;font-weight:600;color:#2c3e50;display:flex;align-items:center;gap:6px}
+  .att-btns{display:flex;gap:6px}
+  .att-btn{padding:5px 12px;border:2px solid #bdc3c7;border-radius:6px;background:#fff;font-weight:700;font-size:.85rem;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .att-btn.present[data-on="1"]{background:#27ae60;border-color:#27ae60;color:#fff}
+  .att-btn.absent[data-on="1"]{background:#e74c3c;border-color:#e74c3c;color:#fff}
+  .att-walkin-add{display:flex;gap:6px;margin-top:10px}
+  .att-walkin-add input{flex:1;padding:7px 10px;border:1px solid #d5dbdb;border-radius:6px;font-size:.9rem}
+  .att-walkin-add button{padding:7px 14px;border:none;border-radius:6px;background:#3498db;color:#fff;font-weight:700;cursor:pointer}
+  .att-copy-bar{display:flex;gap:8px;align-items:center;margin-top:14px;padding:10px;background:#e8f6f3;border-radius:8px;border:1px solid #a3e4d7}
+  .att-copy-bar button{padding:10px 16px;border:none;border-radius:6px;background:#16a085;color:#fff;font-weight:700;font-size:.92rem;cursor:pointer}
+  .att-copy-bar button:hover{background:#0e8268}
+  .att-copy-bar button.copied{background:#7f8c8d}
+  .att-reset{padding:8px 14px;border:1px solid #e74c3c;border-radius:6px;background:#fff;color:#e74c3c;font-size:.78rem;font-weight:600;cursor:pointer;margin-left:auto}
   .tab-content{display:none;background:#fff;border-radius:0 0 12px 12px;padding:12px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
-  #tab1:checked~.tab-content.content1,#tab2:checked~.tab-content.content2,#tab4:checked~.tab-content.content4,#tab5:checked~.tab-content.content5,#tab6:checked~.tab-content.content6{display:block}
+  #tab1:checked~.tab-content.content1,#tab2:checked~.tab-content.content2,#tab4:checked~.tab-content.content4,#tab5:checked~.tab-content.content5,#tab6:checked~.tab-content.content6,#tab7:checked~.tab-content.content7{display:block}
   .card{border:1px solid #e8eef3;border-radius:10px;padding:12px;margin-bottom:10px;background:#fafcfe}
   .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
   .date{font-weight:700;font-size:.95rem;color:#1a5276}
@@ -142,9 +166,9 @@
 </head>
 <body>
 <h1>🏀 6月 低学年スケジュール</h1>
-<p class="subtitle">コーチ配置表（全13回）｜ 更新: 2026/06/24 16:00<a href="https://dianenakamura.github.io/bball-timer/" target="_blank" rel="noopener" class="ext-link" style="margin-left:8px;display:inline-block;padding:3px 10px;background:#e67e22;color:#fff;border-radius:14px;font-size:.78rem;font-weight:700;text-decoration:none">🏀 タイマー</a></p>
-<input type="radio" name="tab" id="tab1" checked><input type="radio" name="tab" id="tab2"><input type="radio" name="tab" id="tab4"><input type="radio" name="tab" id="tab5"><input type="radio" name="tab" id="tab6">
-<div class="tabs"><label for="tab1">📋 スケジュール</label><label for="tab2">👤 担当</label><label for="tab4">🏆 チーム分け</label><label for="tab5">🎯 キャプテン</label><label for="tab6">📩 メッセージ</label></div>
+<p class="subtitle">コーチ配置表（全13回）｜ 更新: 2026/06/24 17:33<a href="https://dianenakamura.github.io/bball-timer/" target="_blank" rel="noopener" class="ext-link" style="margin-left:8px;display:inline-block;padding:3px 10px;background:#e67e22;color:#fff;border-radius:14px;font-size:.78rem;font-weight:700;text-decoration:none">🏀 タイマー</a></p>
+<input type="radio" name="tab" id="tab1" checked><input type="radio" name="tab" id="tab2"><input type="radio" name="tab" id="tab4"><input type="radio" name="tab" id="tab5"><input type="radio" name="tab" id="tab6"><input type="radio" name="tab" id="tab7">
+<div class="tabs"><label for="tab1">📋 スケジュール</label><label for="tab2">👤 担当</label><label for="tab4">🏆 チーム分け</label><label for="tab5">🎯 キャプテン</label><label for="tab6">📩 メッセージ</label><label for="tab7">📝 出席</label></div>
 
 <!-- TAB 1 -->
 <div class="tab-content content1">
@@ -239,17 +263,16 @@
     <div class="supporters">🤝 サポーター（2名）: <span class="sup-name">中村ダイアン</span><span class="sup-name">野本周平</span></div>
     <div class="kounen"><div class="kounen-title">📌 同日の高学年/中高生 19:30-21:00 ＠柳北</div><div class="kounen-participants">高学年 17名 + 中高生 4名 = 21名</div><span>山科 ◯</span><span>シュン吉 ◯</span></div>
   </div>
-  <div class="card"><div class="card-header"><span class="date">⑩ 6/24（水）<span class="diff-badge">更新 6/24</span></span><span class="badge">13名</span></div>
+  <div class="card"><div class="card-header"><span class="date">⑩ 6/24（水）</span><span class="badge">13名</span></div>
     <div class="venue">🕕 18:00-19:30 ｜ 📍 柳北</div>
     <div class="available">参加可能: <span>牧てつや <small>👦かいと・かるま</small></span><span>中野 <small>👦日々</small></span><span>西井 <small>👦あきのり</small></span></div>
     <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name">外部コーチ</span></div>
     <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl4">4年1</span> <span class="grade-label gl3">3年5</span> <span class="grade-label gl2">2年5</span> <span class="grade-label gl1">1年2</span></div><span class="g4">Misha</span><span class="g3">れい</span><span class="g3">だいし</span><span class="g3">のぞみ</span><span class="g3">ともか</span><span class="g3">かいと</span><span class="g2">あきのり</span><span class="g2">まひろ</span><span class="g2">日々</span><span class="g2">だいち</span><span class="g2">かずり</span><span class="g1">もとい</span><span class="g1">かるま</span></div>
-    <div class="supporters">🤝 サポーター（2名）: <span class="sup-name">久信田きほ</span><span class="sup-name">中村ダイアン</span></div>
+    <div class="supporters">🤝 サポーター（3名）: <span class="sup-name">久信田きほ</span><span class="sup-name">中村ダイアン</span><span class="sup-name">千葉潤一</span></div>
     <div class="kounen"><div class="kounen-title">📌 同日の高学年 18:30-20:30 @浅中</div><div class="kounen-participants">高学年 23名</div><span>山科 ◯</span><span>たかぎ △</span></div>
     <div class="kounen"><div class="kounen-title">📌 同日の中高生 19:30-21:00 @柳北</div><div class="kounen-participants">中高生 9名</div></div>
-    <div class="diff-detail">📝 低学年 追加: のもとまひろ ／ 低学年 削除: かどのともき ／ 高学年 24名→23名</div>
   </div>
-  <div class="card"><div class="card-header"><span class="date">⑪ 6/26（金）<span class="diff-badge">更新 6/24</span></span><span class="badge gameday">GameDay 9名</span></div>
+  <div class="card"><div class="card-header"><span class="date">⑪ 6/26（金）</span><span class="badge gameday">GameDay 9名</span></div>
     <div class="venue">🕕 18:00-19:30 ｜ 📍 育英小</div>
     <div class="available">参加可能: <span>牧てつや <small>👦かいと・かるま</small></span><span>いのうえたかひろ</span></div>
     <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name">牧てつや</span></div>
@@ -257,16 +280,14 @@
     <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年5</span> <span class="grade-label gl2">2年2</span> <span class="grade-label gl1">1年2</span></div><span class="g3">れい</span><span class="g3">のぞみ</span><span class="g3">みすず</span><span class="g3">ともか</span><span class="g3">かいと</span><span class="g2">だいち</span><span class="g2">かずり</span><span class="g1">もとい</span><span class="g1">かるま</span></div>
     <div class="supporters">🤝 サポーター（1名）: <span class="sup-name">中村ダイアン</span></div>
     <div class="kounen"><div class="kounen-title">📌 同日の高学年/中高生 GameDay 19:30-21:00 ＠育英小</div><div class="kounen-participants">高学年 21名 + 中高生 1名 = 22名</div><span>山科 ◯</span><span>いのうえたかひろ ◯</span></div>
-    <div class="diff-detail">📝 低学年 削除: 中野日々 ／ 低学年 10名→9名 ／ 担当: 未定→牧てつや</div>
   </div>
-  <div class="card"><div class="card-header"><span class="date">⑫ 6/28（日）<span class="diff-badge">更新 6/24</span></span><span class="badge">6名</span></div>
+  <div class="card"><div class="card-header"><span class="date">⑫ 6/28（日）</span><span class="badge">6名</span></div>
     <div class="venue">🕘 9:00-10:30 ｜ 📍 育英小</div>
     <div class="available">参加可能: <span>及川和馬 <small>👦しゅん</small></span><span>あおき</span></div>
     <div class="assigned"><span class="assigned-label">担当 →</span><span class="assigned-name not-needed">未定</span></div>
     <div class="participants-inline"><div class="p-label">参加者: <span class="grade-label gl3">3年2</span> <span class="grade-label gl2">2年3</span> <span class="grade-label gl1">1年1</span></div><span class="g3">こう</span><span class="g3">れい</span><span class="g2">しゅん</span><span class="g2">あきのり</span><span class="g2">あおい</span><span class="g1">もとい</span></div>
     <div class="supporters">🤝 サポーター（2名）: <span class="sup-name">久信田きほ</span><span class="sup-name">中村ダイアン</span></div>
     <div class="kounen"><div class="kounen-title">📌 同日の高学年/中高生 10:30-12:00 ＠育英小</div><div class="kounen-participants">高学年 8名 + 中高生 1名 = 9名</div><span>及川和馬 ◯</span><span>あおき ◯</span><span>たかぎ △</span></div>
-    <div class="diff-detail">📝 コーチ追加: 及川和馬</div>
   </div>
   <div class="card"><div class="card-header"><span class="date">⑬ 6/29（月）</span><span class="badge">14名</span></div>
     <div class="venue">🕕 18:00-19:30 ｜ 📍 柳北</div>
@@ -832,6 +853,177 @@ function copyMsgBulk(btn) {
     setTimeout(() => { btn.innerText = orig; }, 1500);
   });
 }
+</script>
+
+</div>
+
+<!-- TAB 7: 出席 -->
+<div class="tab-content content7">
+  <div class="att-section">
+    <select class="att-date-select" id="att-date-select" onchange="attRender()"></select>
+    <div id="att-card-container"></div>
+  </div>
+<script>
+const ATT_SESSIONS = [{"key": "6/3", "label": "6/3（水） 18:00-19:30 @柳北", "date_display": "6/3（水）", "time": "18:00-19:30", "venue": "柳北", "venue_full": "柳北", "assigned": "牧てつや", "participants": [{"full": "Misha jain", "name": "Misha", "grade": 4}, {"full": "牧かいと", "name": "かいと", "grade": 3}, {"full": "だいし", "name": "だいし", "grade": 3}, {"full": "今田ともか", "name": "ともか", "grade": 3}, {"full": "米倉のぞみ", "name": "のぞみ", "grade": 3}, {"full": "中村れい", "name": "れい", "grade": 3}, {"full": "ちばかずり", "name": "かずり", "grade": 2}, {"full": "なみきだいち", "name": "だいち", "grade": 2}, {"full": "中野日々", "name": "日々", "grade": 2}, {"full": "牧かるま", "name": "かるま", "grade": 1}, {"full": "かどのともき", "name": "ともき", "grade": 1}]}, {"key": "6/5", "label": "6/5（金） 18:00-19:30 @育英", "date_display": "6/5（金）", "time": "18:00-19:30", "venue": "育英", "venue_full": "育英小", "assigned": "牧てつや + 山科", "participants": [{"full": "牧かいと", "name": "かいと", "grade": 3}, {"full": "今田ともか", "name": "ともか", "grade": 3}, {"full": "米倉のぞみ", "name": "のぞみ", "grade": 3}, {"full": "いそみすず", "name": "みすず", "grade": 3}, {"full": "中村れい", "name": "れい", "grade": 3}, {"full": "及川しゅん", "name": "しゅん", "grade": 2}, {"full": "牧かるま", "name": "かるま", "grade": 1}, {"full": "久信田もとい", "name": "もとい", "grade": 1}]}, {"key": "6/8", "label": "6/8（月） 18:00-19:30 @柳北", "date_display": "6/8（月）", "time": "18:00-19:30", "venue": "柳北", "venue_full": "柳北", "assigned": "及川和馬", "participants": [{"full": "Misha jain", "name": "Misha", "grade": 4}, {"full": "米倉のぞみ", "name": "のぞみ", "grade": 3}, {"full": "いそみすず", "name": "みすず", "grade": 3}, {"full": "中村れい", "name": "れい", "grade": 3}, {"full": "ミヤタエイト", "name": "エイト", "grade": 3}, {"full": "西井あきのり", "name": "あきのり", "grade": 2}, {"full": "及川しゅん", "name": "しゅん", "grade": 2}, {"full": "なみきだいち", "name": "だいち", "grade": 2}, {"full": "いそむらちさ", "name": "ちさ", "grade": 2}, {"full": "久信田もとい", "name": "もとい", "grade": 1}]}, {"key": "6/10", "label": "6/10（水） 18:00-19:30 @柳北", "date_display": "6/10（水）", "time": "18:00-19:30", "venue": "柳北", "venue_full": "柳北", "assigned": "中野", "participants": [{"full": "Misha jain", "name": "Misha", "grade": 4}, {"full": "牧かいと", "name": "かいと", "grade": 3}, {"full": "だいし", "name": "だいし", "grade": 3}, {"full": "今田ともか", "name": "ともか", "grade": 3}, {"full": "米倉のぞみ", "name": "のぞみ", "grade": 3}, {"full": "中村れい", "name": "れい", "grade": 3}, {"full": "ちばかずり", "name": "かずり", "grade": 2}, {"full": "及川しゅん", "name": "しゅん", "grade": 2}, {"full": "なみきだいち", "name": "だいち", "grade": 2}, {"full": "のもとまひろ", "name": "まひろ", "grade": 2}, {"full": "中野日々", "name": "日々", "grade": 2}, {"full": "牧かるま", "name": "かるま", "grade": 1}]}, {"key": "6/12", "label": "6/12（金） 18:00-19:30 @育英", "date_display": "6/12（金）", "time": "18:00-19:30", "venue": "育英", "venue_full": "育英小", "assigned": "牧てつや", "participants": [{"full": "牧かいと", "name": "かいと", "grade": 3}, {"full": "今田ともか", "name": "ともか", "grade": 3}, {"full": "米倉のぞみ", "name": "のぞみ", "grade": 3}, {"full": "中村れい", "name": "れい", "grade": 3}, {"full": "増田葵", "name": "あおい", "grade": 2}, {"full": "中野日々", "name": "日々", "grade": 2}, {"full": "牧かるま", "name": "かるま", "grade": 1}, {"full": "久信田もとい", "name": "もとい", "grade": 1}]}, {"key": "6/15", "label": "6/15（月） 18:00-19:30 @柳北", "date_display": "6/15（月）", "time": "18:00-19:30", "venue": "柳北", "venue_full": "柳北", "assigned": "及川和馬 + 中野", "participants": [{"full": "Misha jain", "name": "Misha", "grade": 4}, {"full": "清水けいいち", "name": "けいいち", "grade": 3}, {"full": "今田ともか", "name": "ともか", "grade": 3}, {"full": "米倉のぞみ", "name": "のぞみ", "grade": 3}, {"full": "いそみすず", "name": "みすず", "grade": 3}, {"full": "中村れい", "name": "れい", "grade": 3}, {"full": "ミヤタエイト", "name": "エイト", "grade": 3}, {"full": "増田葵", "name": "あおい", "grade": 2}, {"full": "西井あきのり", "name": "あきのり", "grade": 2}, {"full": "及川しゅん", "name": "しゅん", "grade": 2}, {"full": "なみきだいち", "name": "だいち", "grade": 2}, {"full": "いそむらちさ", "name": "ちさ", "grade": 2}, {"full": "のもとまひろ", "name": "まひろ", "grade": 2}, {"full": "中野日々", "name": "日々", "grade": 2}, {"full": "かどのともき", "name": "ともき", "grade": 1}, {"full": "久信田もとい", "name": "もとい", "grade": 1}]}, {"key": "6/17", "label": "6/17（水） 18:00-19:30 @柳北", "date_display": "6/17（水）", "time": "18:00-19:30", "venue": "柳北", "venue_full": "柳北", "assigned": "中野", "participants": [{"full": "Misha jain", "name": "Misha", "grade": 4}, {"full": "内堀こう", "name": "こう", "grade": 3}, {"full": "中村れい", "name": "れい", "grade": 3}, {"full": "西井あきのり", "name": "あきのり", "grade": 2}, {"full": "ちばかずり", "name": "かずり", "grade": 2}, {"full": "なみきだいち", "name": "だいち", "grade": 2}, {"full": "中野日々", "name": "日々", "grade": 2}]}, {"key": "6/22", "label": "6/22（月） 18:00-19:30 @柳北", "date_display": "6/22（月）", "time": "18:00-19:30", "venue": "柳北", "venue_full": "柳北", "assigned": "米倉 + 中野", "participants": [{"full": "Misha jain", "name": "Misha", "grade": 4}, {"full": "清水けいいち", "name": "けいいち", "grade": 3}, {"full": "米倉のぞみ", "name": "のぞみ", "grade": 3}, {"full": "いそみすず", "name": "みすず", "grade": 3}, {"full": "中村れい", "name": "れい", "grade": 3}, {"full": "ミヤタエイト", "name": "エイト", "grade": 3}, {"full": "西井あきのり", "name": "あきのり", "grade": 2}, {"full": "なみきだいち", "name": "だいち", "grade": 2}, {"full": "いそむらちさ", "name": "ちさ", "grade": 2}, {"full": "のもとまひろ", "name": "まひろ", "grade": 2}, {"full": "中野日々", "name": "日々", "grade": 2}]}, {"key": "6/24", "label": "6/24（水） 18:00-19:30 @柳北", "date_display": "6/24（水）", "time": "18:00-19:30", "venue": "柳北", "venue_full": "柳北", "assigned": "外部コーチ", "participants": [{"full": "Misha jain", "name": "Misha", "grade": 4}, {"full": "牧かいと", "name": "かいと", "grade": 3}, {"full": "だいし", "name": "だいし", "grade": 3}, {"full": "今田ともか", "name": "ともか", "grade": 3}, {"full": "米倉のぞみ", "name": "のぞみ", "grade": 3}, {"full": "中村れい", "name": "れい", "grade": 3}, {"full": "西井あきのり", "name": "あきのり", "grade": 2}, {"full": "ちばかずり", "name": "かずり", "grade": 2}, {"full": "なみきだいち", "name": "だいち", "grade": 2}, {"full": "のもとまひろ", "name": "まひろ", "grade": 2}, {"full": "中野日々", "name": "日々", "grade": 2}, {"full": "牧かるま", "name": "かるま", "grade": 1}, {"full": "久信田もとい", "name": "もとい", "grade": 1}]}, {"key": "6/26", "label": "6/26（金） 18:00-19:30 @育英", "date_display": "6/26（金）", "time": "18:00-19:30", "venue": "育英", "venue_full": "育英小", "assigned": "牧てつや", "participants": [{"full": "牧かいと", "name": "かいと", "grade": 3}, {"full": "今田ともか", "name": "ともか", "grade": 3}, {"full": "米倉のぞみ", "name": "のぞみ", "grade": 3}, {"full": "いそみすず", "name": "みすず", "grade": 3}, {"full": "中村れい", "name": "れい", "grade": 3}, {"full": "ちばかずり", "name": "かずり", "grade": 2}, {"full": "なみきだいち", "name": "だいち", "grade": 2}, {"full": "牧かるま", "name": "かるま", "grade": 1}, {"full": "久信田もとい", "name": "もとい", "grade": 1}]}, {"key": "6/28", "label": "6/28（日） 9:00-10:30 @育英", "date_display": "6/28（日）", "time": "9:00-10:30", "venue": "育英", "venue_full": "育英小", "assigned": "", "participants": [{"full": "内堀こう", "name": "こう", "grade": 3}, {"full": "中村れい", "name": "れい", "grade": 3}, {"full": "増田葵", "name": "あおい", "grade": 2}, {"full": "西井あきのり", "name": "あきのり", "grade": 2}, {"full": "及川しゅん", "name": "しゅん", "grade": 2}, {"full": "久信田もとい", "name": "もとい", "grade": 1}]}, {"key": "6/29", "label": "6/29（月） 18:00-19:30 @柳北", "date_display": "6/29（月）", "time": "18:00-19:30", "venue": "柳北", "venue_full": "柳北", "assigned": "", "participants": [{"full": "Misha jain", "name": "Misha", "grade": 4}, {"full": "清水けいいち", "name": "けいいち", "grade": 3}, {"full": "今田ともか", "name": "ともか", "grade": 3}, {"full": "米倉のぞみ", "name": "のぞみ", "grade": 3}, {"full": "いそみすず", "name": "みすず", "grade": 3}, {"full": "中村れい", "name": "れい", "grade": 3}, {"full": "ミヤタエイト", "name": "エイト", "grade": 3}, {"full": "増田葵", "name": "あおい", "grade": 2}, {"full": "西井あきのり", "name": "あきのり", "grade": 2}, {"full": "及川しゅん", "name": "しゅん", "grade": 2}, {"full": "いそむらちさ", "name": "ちさ", "grade": 2}, {"full": "中野日々", "name": "日々", "grade": 2}, {"full": "かどのともき", "name": "ともき", "grade": 1}, {"full": "久信田もとい", "name": "もとい", "grade": 1}]}];
+const ATT_MONTH = 6;
+let attKey = null;
+let attState = {}; // { key: { status: {name:'present'|'absent'|''}, walkins: [name] } }
+
+function attLoadState(){
+  try { attState = JSON.parse(localStorage.getItem(`att_state_${ATT_MONTH}`)) || {}; } catch(e){ attState = {}; }
+}
+function attSaveState(){
+  try { localStorage.setItem(`att_state_${ATT_MONTH}`, JSON.stringify(attState)); } catch(e){}
+}
+function attGetCurrent(){
+  if (!attState[attKey]) attState[attKey] = { status: {}, walkins: [] };
+  return attState[attKey];
+}
+
+function attInit(){
+  attLoadState();
+  const sel = document.getElementById('att-date-select');
+  if (!sel) return;
+  // Pick today or nearest future as default
+  const today = new Date();
+  const tm = today.getMonth() + 1;
+  const td = today.getDate();
+  let defaultIdx = 0;
+  for (let i = 0; i < ATT_SESSIONS.length; i++){
+    const k = ATT_SESSIONS[i].key;
+    const [mm, dd] = k.replace('j','').split('/').map(Number);
+    if (mm === tm && dd === td){ defaultIdx = i; break; }
+    if (mm > tm || (mm === tm && dd > td)){ defaultIdx = i; break; }
+  }
+  sel.innerHTML = ATT_SESSIONS.map((s, i) => `<option value="${s.key}" ${i===defaultIdx?'selected':''}>${s.label}</option>`).join('');
+  attKey = ATT_SESSIONS[defaultIdx]?.key || null;
+  sel.value = attKey;
+  attRender();
+}
+
+function attRender(){
+  const sel = document.getElementById('att-date-select');
+  attKey = sel.value;
+  const sess = ATT_SESSIONS.find(s => s.key === attKey);
+  if (!sess){ document.getElementById('att-card-container').innerHTML = ''; return; }
+  const cur = attGetCurrent();
+  let presentCount = 0, absentCount = 0;
+  for (const p of sess.participants){
+    if (cur.status[p.full] === 'present') presentCount++;
+    else if (cur.status[p.full] === 'absent') absentCount++;
+  }
+  const walkinCount = (cur.walkins || []).length;
+  const totalPresent = presentCount + walkinCount;
+  const pending = sess.participants.length - presentCount - absentCount;
+
+  let html = `<div class="att-card">
+    <div class="att-card-header">
+      <div class="att-info">${sess.date_display} ${sess.time} ＠${sess.venue}<br><span style="font-size:.75rem;color:#7f8c8d;font-weight:500">担当: ${sess.assigned || '未定'}</span></div>
+      <div class="att-counts">
+        <span class="att-present">出席 <b>${totalPresent}</b></span>
+        <span class="att-absent">欠席 <b>${absentCount}</b></span>
+        <span class="att-pending">未 <b>${pending}</b></span>
+      </div>
+    </div>`;
+  for (const p of sess.participants){
+    const st = cur.status[p.full] || '';
+    html += `<div class="att-row">
+      <div class="att-name"><span class="grade-label gl${p.grade}">${p.grade}年</span>${p.name}</div>
+      <div class="att-btns">
+        <button class="att-btn present" data-on="${st==='present'?1:0}" onclick="attToggle('${p.full.replace(/'/g, "\\'")}', 'present')">⭕</button>
+        <button class="att-btn absent" data-on="${st==='absent'?1:0}" onclick="attToggle('${p.full.replace(/'/g, "\\'")}', 'absent')">✕</button>
+      </div>
+    </div>`;
+  }
+  if (cur.walkins && cur.walkins.length > 0){
+    html += `<div style="margin-top:10px;padding-top:8px;border-top:1px dashed #d5dbdb"><div style="font-size:.78rem;color:#7f8c8d;font-weight:700;margin-bottom:6px">飛び込み参加（${cur.walkins.length}名）</div>`;
+    for (let i = 0; i < cur.walkins.length; i++){
+      html += `<div class="att-row">
+        <div class="att-name">🆕 ${cur.walkins[i]}</div>
+        <div class="att-btns">
+          <button class="att-btn absent" onclick="attRemoveWalkin(${i})" style="border-color:#e74c3c;color:#e74c3c">削除</button>
+        </div>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+  html += `<div class="att-walkin-add">
+      <input type="text" id="att-walkin-input" placeholder="飛び込み参加者の名前">
+      <button onclick="attAddWalkin()">追加</button>
+    </div>
+    <div class="att-copy-bar">
+      <button id="att-copy-btn" onclick="attCopyLine(this)">📋 LINE用にコピー</button>
+      <button class="att-reset" onclick="attReset()">リセット</button>
+    </div>
+  </div>`;
+  document.getElementById('att-card-container').innerHTML = html;
+}
+
+function attToggle(name, type){
+  const cur = attGetCurrent();
+  cur.status[name] = (cur.status[name] === type) ? '' : type;
+  attSaveState();
+  attRender();
+}
+
+function attAddWalkin(){
+  const inp = document.getElementById('att-walkin-input');
+  const v = (inp.value || '').trim();
+  if (!v) return;
+  const cur = attGetCurrent();
+  if (!cur.walkins) cur.walkins = [];
+  cur.walkins.push(v);
+  attSaveState();
+  attRender();
+}
+
+function attRemoveWalkin(idx){
+  const cur = attGetCurrent();
+  if (cur.walkins) cur.walkins.splice(idx, 1);
+  attSaveState();
+  attRender();
+}
+
+function attReset(){
+  if (!confirm('この日の出席記録をリセットしますか？')) return;
+  attState[attKey] = { status: {}, walkins: [] };
+  attSaveState();
+  attRender();
+}
+
+function attCopyLine(btn){
+  const sess = ATT_SESSIONS.find(s => s.key === attKey);
+  if (!sess) return;
+  const cur = attGetCurrent();
+  const present = sess.participants.filter(p => cur.status[p.full] === 'present');
+  const absent = sess.participants.filter(p => cur.status[p.full] === 'absent');
+  const walkins = cur.walkins || [];
+  const totalPresent = present.length + walkins.length;
+  let txt = `🏀 ${sess.date_display} 低学年 出席報告\n`;
+  txt += `${sess.time} ＠${sess.venue_full}\n`;
+  if (sess.assigned) txt += `担当: ${sess.assigned}\n`;
+  txt += `\n■ 出席（${totalPresent}名）\n`;
+  if (present.length > 0){
+    for (const p of present) txt += `・${p.grade}年 ${p.name}\n`;
+  }
+  if (walkins.length > 0){
+    txt += `\n＜飛び込み参加＞\n`;
+    for (const w of walkins) txt += `・${w}\n`;
+  }
+  if (absent.length > 0){
+    txt += `\n■ 欠席（${absent.length}名）\n`;
+    for (const p of absent) txt += `・${p.grade}年 ${p.name}\n`;
+  }
+  navigator.clipboard.writeText(txt).then(() => {
+    const orig = btn.innerText;
+    btn.innerText = '✓ コピー済';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.innerText = orig; btn.classList.remove('copied'); }, 1800);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', attInit);
+if (document.readyState !== 'loading') attInit();
 </script>
 
 </div>
