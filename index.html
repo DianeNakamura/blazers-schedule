@@ -173,7 +173,7 @@
 </head>
 <body>
 <h1>🏀 7月 低学年スケジュール</h1>
-<p class="subtitle">コーチ配置表（全13回）｜ 更新: 2026/07/14 16:12<a href="https://dianenakamura.github.io/bball-timer/" target="_blank" rel="noopener" class="ext-link" style="margin-left:8px;display:inline-block;padding:3px 10px;background:#e67e22;color:#fff;border-radius:14px;font-size:.78rem;font-weight:700;text-decoration:none">🏀 タイマー</a></p>
+<p class="subtitle">コーチ配置表（全13回）｜ 更新: 2026/07/14 16:26<a href="https://dianenakamura.github.io/bball-timer/" target="_blank" rel="noopener" class="ext-link" style="margin-left:8px;display:inline-block;padding:3px 10px;background:#e67e22;color:#fff;border-radius:14px;font-size:.78rem;font-weight:700;text-decoration:none">🏀 タイマー</a></p>
 <input type="radio" name="tab" id="tab1" checked><input type="radio" name="tab" id="tab2"><input type="radio" name="tab" id="tab4"><input type="radio" name="tab" id="tab5"><input type="radio" name="tab" id="tab6"><input type="radio" name="tab" id="tab7">
 <div class="tabs"><label for="tab1">📋 スケジュール</label><label for="tab2">👤 担当</label><label for="tab4">🏆 チーム分け</label><label for="tab5">🎯 キャプテン</label><label for="tab6">📩 メッセージ</label><label for="tab7">📝 出席</label></div>
 
@@ -609,7 +609,6 @@ if (document.readyState !== 'loading') tbInit();
       <div style="font-size:.85rem;font-weight:700;color:#1a5276">🎯 抽選モード</div>
       <select id="cp-mode" class="tb-input" onchange="cpChangeMode()">
         <option value="dribble" selected>🏀 ドリブル抽選</option>
-        <option value="shot">🏀 シュート抽選</option>
         <option value="amida">🎋 阿弥陀くじ</option>
         <option value="simple">🎯 シンプルルーレット</option>
       </select>
@@ -623,12 +622,7 @@ if (document.readyState !== 'loading') tbInit();
     <div class="cp-ball" id="cp-ball">🏀</div>
     <div class="cp-result-name" id="cp-name">？</div>
     <div class="cp-result-grade" id="cp-grade"></div>
-    <svg id="cp-amida" style="display:none" width="100%" height="220" preserveAspectRatio="xMidYMid meet"></svg>
-    <div id="cp-shot" style="display:none;position:relative;width:100%;height:120px">
-      <div id="cp-shot-court" style="position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(180deg,transparent,rgba(231,126,34,.1))"></div>
-      <div id="cp-shot-hoop" style="position:absolute;top:5px;right:15%;font-size:2.4rem">🏀🎯</div>
-      <div id="cp-shot-ball" style="position:absolute;bottom:60px;left:15%;font-size:1.8rem;transition:none">🏀</div>
-    </div>
+    <svg id="cp-amida" style="display:none" width="100%" height="360" preserveAspectRatio="xMidYMid meet"></svg>
   </div>
 
   <button class="cp-roulette-btn" id="cp-spin-btn" onclick="cpSpin()">🏀 ドリブル抽選開始</button>
@@ -665,47 +659,76 @@ function cpEnsureAudio(){
   if (cpAudioCtx && cpAudioCtx.state === 'suspended') cpAudioCtx.resume();
   return cpAudioCtx;
 }
+let cpTickIdx = 0;
 function cpDribble(){
   if (!cpSoundEnabled()) return;
   const ctx = cpEnsureAudio(); if (!ctx) return;
   const now = ctx.currentTime;
-  // Basketball dribble: quick low-pitched thump
+  // 楽しいポップ音: 各tickで高さがランダムに変わるベル
+  const notes = [523.25, 587.33, 659.25, 698.46, 783.99, 880]; // C-D-E-F-G-A
+  const freq = notes[cpTickIdx % notes.length];
+  cpTickIdx++;
   const osc = ctx.createOscillator();
   const gain = ctx.createGain();
-  osc.type = 'sine';
-  osc.frequency.setValueAtTime(180, now);
-  osc.frequency.exponentialRampToValueAtTime(60, now + 0.08);
+  osc.type = 'triangle';
+  osc.frequency.setValueAtTime(freq, now);
   gain.gain.setValueAtTime(0, now);
-  gain.gain.linearRampToValueAtTime(0.35, now + 0.005);
-  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.10);
+  gain.gain.linearRampToValueAtTime(0.28, now + 0.005);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
   osc.connect(gain).connect(ctx.destination);
-  osc.start(now); osc.stop(now + 0.10);
+  osc.start(now); osc.stop(now + 0.15);
 }
 function cpWhistle(){
+  cpTickIdx = 0;
   if (!cpSoundEnabled()) return;
   const ctx = cpEnsureAudio(); if (!ctx) return;
   const now = ctx.currentTime;
-  // Whistle: short "pipipi-piiii" 2 short + 1 long
-  const blasts = [[0, 0.15], [0.20, 0.15], [0.42, 0.60]];
-  for (const [off, dur] of blasts){
-    const t0 = now + off;
+  // ファンファーレ「タラララッタラー♪」: 高音の階段+和音でお祝い感
+  // ドド ソソ ラー ソ ドー
+  const melody = [
+    {t: 0.00, f: 523.25, d: 0.10}, // ド
+    {t: 0.12, f: 523.25, d: 0.10}, // ド
+    {t: 0.24, f: 783.99, d: 0.10}, // ソ
+    {t: 0.36, f: 783.99, d: 0.10}, // ソ
+    {t: 0.48, f: 880.00, d: 0.20}, // ラー
+    {t: 0.72, f: 783.99, d: 0.15}, // ソ
+    {t: 0.90, f: 1046.5, d: 0.60}, // ドー (1オクターブ上)
+  ];
+  for (const n of melody){
+    const t0 = now + n.t;
+    // main tone
     const osc = ctx.createOscillator();
     const g = ctx.createGain();
-    osc.type = 'sine'; osc.frequency.value = 2400;
-    const lfo = ctx.createOscillator();
-    const lfoG = ctx.createGain();
-    lfo.type = 'sine'; lfo.frequency.value = 20; lfoG.gain.value = 0.10;
+    osc.type = 'square';
+    osc.frequency.value = n.f;
     g.gain.setValueAtTime(0, t0);
-    g.gain.linearRampToValueAtTime(0.30, t0 + 0.02);
-    g.gain.setValueAtTime(0.30, t0 + dur - 0.05);
-    g.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
-    lfo.connect(lfoG); lfoG.connect(g.gain);
+    g.gain.linearRampToValueAtTime(0.18, t0 + 0.01);
+    g.gain.setValueAtTime(0.18, t0 + n.d - 0.04);
+    g.gain.exponentialRampToValueAtTime(0.001, t0 + n.d);
     osc.connect(g).connect(ctx.destination);
-    osc.start(t0); osc.stop(t0 + dur);
-    lfo.start(t0); lfo.stop(t0 + dur);
+    osc.start(t0); osc.stop(t0 + n.d);
+    // harmony (5th)
+    const osc2 = ctx.createOscillator();
+    const g2 = ctx.createGain();
+    osc2.type = 'triangle';
+    osc2.frequency.value = n.f * 1.5;
+    g2.gain.setValueAtTime(0, t0);
+    g2.gain.linearRampToValueAtTime(0.10, t0 + 0.01);
+    g2.gain.exponentialRampToValueAtTime(0.001, t0 + n.d);
+    osc2.connect(g2).connect(ctx.destination);
+    osc2.start(t0); osc2.stop(t0 + n.d);
   }
-  // vibration on iPhone
-  if (navigator.vibrate) navigator.vibrate([150, 100, 150, 100, 600]);
+  // 拍手風ホワイトノイズを最後に
+  const noise = ctx.createBufferSource();
+  const buffer = ctx.createBuffer(1, ctx.sampleRate * 0.8, ctx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * 0.15 * (1 - i / data.length);
+  noise.buffer = buffer;
+  const ng = ctx.createGain(); ng.gain.value = 0.5;
+  noise.connect(ng).connect(ctx.destination);
+  noise.start(now + 1.5);
+  // vibration on iPhone (celebratory pattern)
+  if (navigator.vibrate) navigator.vibrate([80, 60, 80, 60, 80, 60, 80, 60, 300]);
 }
 
 function cpInit(){
@@ -782,15 +805,11 @@ function cpResetDisplay(){
   document.getElementById('cp-name').textContent = '？';
   document.getElementById('cp-grade').textContent = '';
   const mode = document.getElementById('cp-mode') ? document.getElementById('cp-mode').value : 'dribble';
-  ballEl.style.display = (mode === 'dribble' || mode === 'shot') ? '' : 'none';
+  ballEl.style.display = (mode === 'dribble') ? '' : 'none';
   const amida = document.getElementById('cp-amida'); if (amida){ amida.style.display = 'none'; amida.innerHTML = ''; }
-  const shot = document.getElementById('cp-shot'); if (shot) shot.style.display = 'none';
-  const shotBall = document.getElementById('cp-shot-ball');
-  if (shotBall){ shotBall.style.transition = 'none'; shotBall.style.left = '15%'; shotBall.style.bottom = '60px'; shotBall.style.transform = 'none'; }
   const btn = document.getElementById('cp-spin-btn');
   const labels = {
     dribble: '🏀 ドリブル抽選開始',
-    shot: '🏀 シュート抽選開始',
     amida: '🎋 阿弥陀くじ開始',
     simple: '🎯 ルーレット開始',
   };
@@ -803,7 +822,6 @@ function cpChangeMode(){
   const mode = document.getElementById('cp-mode').value;
   const labels = {
     dribble: '🏀 ドリブル抽選開始',
-    shot: '🏀 シュート抽選開始',
     amida: '🎋 阿弥陀くじ開始',
     simple: '🎯 ルーレット開始',
   };
@@ -850,14 +868,12 @@ function cpSpin(){
   btn.disabled = true;
 
   // Show/hide mode-specific display elements
-  document.getElementById('cp-ball').style.display = (mode === 'dribble' || mode === 'shot') ? '' : 'none';
+  document.getElementById('cp-ball').style.display = (mode === 'dribble') ? '' : 'none';
   document.getElementById('cp-amida').style.display = mode === 'amida' ? '' : 'none';
-  document.getElementById('cp-shot').style.display = mode === 'shot' ? '' : 'none';
 
   if (mode === 'dribble') cpSpinDribble(btn);
   else if (mode === 'simple') cpSpinSimple(btn);
   else if (mode === 'amida') cpSpinAmida(btn);
-  else if (mode === 'shot') cpSpinShot(btn);
 }
 
 function cpSpinSimple(btn){
@@ -909,52 +925,6 @@ function cpSpinDribble(btn){
   tick();
 }
 
-function cpSpinShot(btn){
-  const disp = document.getElementById('cp-display');
-  const ballEl = document.getElementById('cp-ball');
-  const shotEl = document.getElementById('cp-shot');
-  const shotBall = document.getElementById('cp-shot-ball');
-  disp.classList.add('spinning'); disp.classList.remove('done');
-  ballEl.style.display = 'none';
-  document.getElementById('cp-prefix').textContent = '🏀 ドリブル中...';
-
-  // Phase 1: dribble & name cycle (1500ms)
-  let elapsed = 0;
-  const phase1 = 1500;
-  function tick(){
-    if (elapsed >= phase1){
-      // Phase 2: shoot animation (900ms)
-      document.getElementById('cp-prefix').textContent = '🏀 シュート！';
-      shotBall.style.transition = 'left .8s cubic-bezier(.5,-.4,.5,.1), bottom .8s cubic-bezier(.5,-.4,.5,.1), transform .8s ease-out';
-      shotBall.style.left = 'calc(80% - 20px)';
-      shotBall.style.bottom = '30px';
-      shotBall.style.transform = 'rotate(720deg) scale(.6)';
-      setTimeout(() => {
-        // Ball goes in!
-        cpFinish(btn);
-        // Reset ball position for next round
-        setTimeout(() => {
-          shotBall.style.transition = 'none';
-          shotBall.style.left = '15%';
-          shotBall.style.bottom = '60px';
-          shotBall.style.transform = 'none';
-        }, 1500);
-      }, 900);
-      return;
-    }
-    cpDribble();
-    const all = cpAvail();
-    const pick = all[Math.floor(Math.random() * all.length)];
-    document.getElementById('cp-name').textContent = pick ? pick.name : '？';
-    document.getElementById('cp-grade').textContent = pick ? `${pick.grade||'?'}年` : '';
-    const progress = elapsed / phase1;
-    const interval = 90 + Math.pow(progress, 2) * 220;
-    elapsed += interval;
-    setTimeout(tick, interval);
-  }
-  tick();
-}
-
 function cpSpinAmida(btn){
   const disp = document.getElementById('cp-display');
   const svg = document.getElementById('cp-amida');
@@ -968,33 +938,52 @@ function cpSpinAmida(btn){
   const N = all.length;
   const winnerIdx = all.findIndex(p => p.name === winnerName);
 
-  // SVG dimensions
-  const W = 320, H = 200;
-  const marginTop = 24, marginBot = 24;
-  const colWidth = W / (N + 1);
+  // SVG dimensions（縦長にして名前を大きく表示）
+  const colSpacing = 56;   // 名前間隔（広めに）
+  const W = colSpacing * (N + 1);
+  const H = 360;
+  const marginTop = 60;    // 名前スペース確保
+  const marginBot = 44;    // 王冠スペース
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
   svg.innerHTML = '';
 
-  // Names on top
+  const colors = ['#e74c3c', '#3498db', '#27ae60', '#f39c12', '#9b59b6', '#16a085', '#e67e22', '#2980b9', '#c0392b', '#8e44ad'];
+
   for (let i = 0; i < N; i++){
-    const x = colWidth * (i + 1);
+    const x = colSpacing * (i + 1);
+    const color = colors[i % colors.length];
+    // 名前の背景丸
+    const circ = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circ.setAttribute('cx', x); circ.setAttribute('cy', 30);
+    circ.setAttribute('r', 22);
+    circ.setAttribute('fill', color); circ.setAttribute('opacity', '0.85');
+    svg.appendChild(circ);
+    // 学年小バッジ
+    const gt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    gt.setAttribute('x', x); gt.setAttribute('y', 24);
+    gt.setAttribute('text-anchor', 'middle');
+    gt.setAttribute('font-size', '10'); gt.setAttribute('fill', '#fff'); gt.setAttribute('font-weight', '600');
+    gt.textContent = (all[i].grade || '?') + '年';
+    svg.appendChild(gt);
+    // 名前（大きく、ボールドで、白背景の縁取り）
     const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    t.setAttribute('x', x); t.setAttribute('y', 12);
+    t.setAttribute('x', x); t.setAttribute('y', 38);
     t.setAttribute('text-anchor', 'middle');
-    t.setAttribute('font-size', '10'); t.setAttribute('fill', '#333');
-    t.textContent = all[i].name.slice(0, 5);
+    t.setAttribute('font-size', '13'); t.setAttribute('fill', '#fff'); t.setAttribute('font-weight', '900');
+    const nm = all[i].name;
+    t.textContent = nm.length > 4 ? nm.slice(0, 4) : nm;
     svg.appendChild(t);
     // Vertical line
     const ln = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     ln.setAttribute('x1', x); ln.setAttribute('y1', marginTop);
     ln.setAttribute('x2', x); ln.setAttribute('y2', H - marginBot);
-    ln.setAttribute('stroke', '#ccc'); ln.setAttribute('stroke-width', '2');
+    ln.setAttribute('stroke', '#bdc3c7'); ln.setAttribute('stroke-width', '2.5');
     svg.appendChild(ln);
     // Bottom marker (crown at winner)
     const b = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    b.setAttribute('x', x); b.setAttribute('y', H - 6);
+    b.setAttribute('x', x); b.setAttribute('y', H - 14);
     b.setAttribute('text-anchor', 'middle');
-    b.setAttribute('font-size', '14');
+    b.setAttribute('font-size', '24');
     b.textContent = (i === winnerIdx) ? '👑' : '✕';
     svg.appendChild(b);
   }
@@ -1030,7 +1019,7 @@ function cpSpinAmida(btn){
   }
   // Update crown position to the actual ending column
   const bottomTexts = svg.querySelectorAll('text');
-  const bottomList = Array.from(bottomTexts).filter(el => parseFloat(el.getAttribute('y')) > H - 20);
+  const bottomList = Array.from(bottomTexts).filter(el => parseFloat(el.getAttribute('y')) >= H - marginBot);
   for (let i = 0; i < bottomList.length; i++){
     bottomList[i].textContent = (i === cur) ? '👑' : '✕';
   }
@@ -1044,8 +1033,8 @@ function cpSpinAmida(btn){
       return;
     }
     const t = ties[idx];
-    const x1 = colWidth * (t.c + 1);
-    const x2 = colWidth * (t.c + 2);
+    const x1 = colSpacing * (t.c + 1);
+    const x2 = colSpacing * (t.c + 2);
     const ln = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     ln.setAttribute('x1', x1); ln.setAttribute('y1', t.y);
     ln.setAttribute('x2', x1); ln.setAttribute('y2', t.y);
@@ -1067,20 +1056,20 @@ function cpSpinAmida(btn){
     document.getElementById('cp-prefix').textContent = '👣 たどり中...';
     let cur = winnerIdx;
     let y = marginTop;
-    const pathPts = [{x: colWidth * (cur + 1), y}];
+    const pathPts = [{x: colSpacing * (cur + 1), y}];
     const sortedTies = [...ties].sort((a, b) => a.y - b.y);
     for (const t of sortedTies){
       if (t.c === cur){
-        pathPts.push({x: colWidth * (cur + 1), y: t.y});
+        pathPts.push({x: colSpacing * (cur + 1), y: t.y});
         cur = cur + 1;
-        pathPts.push({x: colWidth * (cur + 1), y: t.y});
+        pathPts.push({x: colSpacing * (cur + 1), y: t.y});
       } else if (t.c === cur - 1){
-        pathPts.push({x: colWidth * (cur + 1), y: t.y});
+        pathPts.push({x: colSpacing * (cur + 1), y: t.y});
         cur = cur - 1;
-        pathPts.push({x: colWidth * (cur + 1), y: t.y});
+        pathPts.push({x: colSpacing * (cur + 1), y: t.y});
       }
     }
-    pathPts.push({x: colWidth * (cur + 1), y: H - marginBot});
+    pathPts.push({x: colSpacing * (cur + 1), y: H - marginBot});
 
     // Animate path drawing
     let pi = 0;
