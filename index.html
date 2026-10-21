@@ -449,14 +449,14 @@ function tbLoad(key){
 
 function tbSave(){ localStorage.setItem(`tb_${tbCurrentKey}`, JSON.stringify({pool: tbPool, teams: tbTeams, nextId: tbNextId})); }
 
-function tbEsc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
-
 function tbChip(p){
   const span = document.createElement('span');
   const g = p.grade || 0;
   span.className = `tb-name g${g}`;
   span.dataset.name = p.name; span.dataset.grade = g;
-  span.innerHTML = `<span class="tb-grade-tag">${g||'?'}</span>${tbEsc(p.name)}`;
+  const grade = document.createElement('span');
+  grade.className = 'tb-grade-tag'; grade.textContent = g || '?';
+  span.append(grade, document.createTextNode(p.name));
   span.addEventListener('click', e => { e.stopPropagation(); tbSelectName(span); });
   return span;
 }
@@ -550,15 +550,21 @@ function tbRender(){
     });
     const counts = tbCounts(t.names);
     const breakdown = [4,3,2,1,0].filter(g=>counts[g]).map(g=>`${g||'?'}年×${counts[g]}`).join(' ');
-    card.innerHTML = `
-      <div class="tb-team-header">
-        <div><span class="tb-team-title">Team ${t.id}</span><span class="tb-team-meta">(${t.names.length}名${breakdown?' / '+breakdown:''})</span></div>
-        <button class="tb-team-remove" onclick="event.stopPropagation(); tbRemoveTeam(${t.id})" title="チーム削除">✕</button>
-      </div>
-      <div class="tb-names" id="tb-team-${t.id}-names"></div>
-    `;
+    const header = document.createElement('div'); header.className = 'tb-team-header';
+    const heading = document.createElement('div');
+    const title = document.createElement('span'); title.className = 'tb-team-title';
+    title.textContent = `Team ${t.id}`;
+    const meta = document.createElement('span'); meta.className = 'tb-team-meta';
+    meta.textContent = `(${t.names.length}名${breakdown?' / '+breakdown:''})`;
+    heading.append(title, meta);
+    const remove = document.createElement('button'); remove.className = 'tb-team-remove';
+    remove.title = 'チーム削除'; remove.textContent = '✕';
+    remove.addEventListener('click', event => { event.stopPropagation(); tbRemoveTeam(t.id); });
+    header.append(heading, remove);
+    const ns = document.createElement('div'); ns.className = 'tb-names';
+    ns.id = `tb-team-${t.id}-names`;
+    card.append(header, ns);
     tEl.appendChild(card);
-    const ns = document.getElementById(`tb-team-${t.id}-names`);
     if (t.names.length === 0) ns.innerHTML = '<div class="tb-empty">名前をタップして移動</div>';
     else { const sorted=[...t.names].sort((a,b)=>(b.grade||0)-(a.grade||0)||a.name.localeCompare(b.name,'ja')); sorted.forEach(p => ns.appendChild(tbChip(p))); }
   });
@@ -818,8 +824,6 @@ function cpSave(){
   localStorage.setItem(`cp_${cpKey}`, JSON.stringify({excluded: [...cpExcluded]}));
 }
 
-function cpEsc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
-
 function cpAvail(){
   const sess = CP_SESSIONS.find(s => s.key === cpKey);
   return sess.participants.filter(p => !cpExcluded.has(p.name));
@@ -834,7 +838,9 @@ function cpRender(){
     const g = p.grade || 0;
     span.className = `cp-name g${g}` + (cpExcluded.has(p.name) ? ' excluded' : '') + (cpCaptains.some(c => c.name === p.name) ? ' captain' : '');
     span.dataset.name = p.name;
-    span.innerHTML = `<span class="cp-grade-tag">${g||'?'}</span>${cpEsc(p.name)}`;
+    const grade = document.createElement('span');
+    grade.className = 'cp-grade-tag'; grade.textContent = g || '?';
+    span.append(grade, document.createTextNode(p.name));
     span.onclick = () => {
       if (cpSpinning) return;
       if (cpExcluded.has(p.name)) cpExcluded.delete(p.name);
@@ -855,7 +861,11 @@ function cpRender(){
     hcard.style.display = 'none';
   } else {
     hcard.style.display = 'block';
-    hel.innerHTML = hist.map(h => `<span class="cp-history-item">${cpEsc(h.name)}</span>`).join('');
+    hel.replaceChildren();
+    hist.forEach(h => {
+      const item = document.createElement('span'); item.className = 'cp-history-item';
+      item.textContent = h.name; hel.appendChild(item);
+    });
   }
 }
 
@@ -1251,6 +1261,18 @@ function attGetCurrent(){
   return attState[attKey];
 }
 
+// User-controlled values are text nodes; handlers receive raw names via closures.
+function attEl(tag, className = '', text = ''){
+  const element = document.createElement(tag);
+  element.className = className; element.textContent = text;
+  return element;
+}
+function attButton(className, text, handler){
+  const button = attEl('button', className, text); button.type = 'button';
+  button.addEventListener('click', handler);
+  return button;
+}
+
 function attInit(){
   attLoadState();
   const sel = document.getElementById('att-date-select');
@@ -1266,7 +1288,11 @@ function attInit(){
     if (mm === tm && dd === td){ defaultIdx = i; break; }
     if (mm > tm || (mm === tm && dd > td)){ defaultIdx = i; break; }
   }
-  sel.innerHTML = ATT_SESSIONS.map((s, i) => `<option value="${s.key}" ${i===defaultIdx?'selected':''}>${s.label}</option>`).join('');
+  sel.replaceChildren();
+  ATT_SESSIONS.forEach(s => {
+    const option = document.createElement('option');
+    option.value = s.key; option.textContent = s.label; sel.appendChild(option);
+  });
   attKey = ATT_SESSIONS[defaultIdx]?.key || null;
   sel.value = attKey;
   attRender();
@@ -1276,7 +1302,7 @@ function attRender(){
   const sel = document.getElementById('att-date-select');
   attKey = sel.value;
   const sess = ATT_SESSIONS.find(s => s.key === attKey);
-  if (!sess){ document.getElementById('att-card-container').innerHTML = ''; return; }
+  if (!sess){ document.getElementById('att-card-container').replaceChildren(); return; }
   const cur = attGetCurrent();
   let presentCount = 0, absentCount = 0;
   for (const p of sess.participants){
@@ -1287,52 +1313,62 @@ function attRender(){
   const totalPresent = presentCount + walkinCount;
   const pending = sess.participants.length - presentCount - absentCount;
 
-  let html = `<div class="att-card">
-    <div class="att-card-header">
-      <div class="att-info">${sess.date_display} ${sess.time} ＠${sess.venue}<br><span style="font-size:.75rem;color:#7f8c8d;font-weight:500">担当: ${sess.assigned || '未定'}</span></div>
-      <div class="att-counts">
-        <span class="att-present">出席 <b>${totalPresent}</b></span>
-        <span class="att-absent">欠席 <b>${absentCount}</b></span>
-        <span class="att-pending">未 <b>${pending}</b></span>
-      </div>
-    </div>`;
-  for (const p of sess.participants){
+  const card = attEl('div', 'att-card');
+  const header = attEl('div', 'att-card-header');
+  const info = attEl('div', 'att-info', `${sess.date_display} ${sess.time} ＠${sess.venue}`);
+  const assigned = attEl('span', '', `担当: ${sess.assigned || '未定'}`);
+  assigned.style.cssText = 'font-size:.75rem;color:#7f8c8d;font-weight:500';
+  info.append(document.createElement('br'), assigned);
+  const counts = attEl('div', 'att-counts');
+  for (const [className, label, count] of [
+    ['att-present', '出席', totalPresent], ['att-absent', '欠席', absentCount], ['att-pending', '未', pending]
+  ]) {
+    const item = attEl('span', className, `${label} `);
+    item.appendChild(attEl('b', '', count)); counts.appendChild(item);
+  }
+  header.append(info, counts); card.appendChild(header);
+  for (const p of sess.participants) {
     const st = cur.status[p.full] || '';
-    html += `<div class="att-row">
-      <div class="att-name"><span class="grade-label gl${p.grade}">${p.grade}年</span>${p.name}</div>
-      <div class="att-btns">
-        <button class="att-btn present" data-on="${st==='present'?1:0}" onclick="attToggle('${p.full.replace(/'/g, "\\'")}', 'present')">⭕</button>
-        <button class="att-btn absent" data-on="${st==='absent'?1:0}" onclick="attToggle('${p.full.replace(/'/g, "\\'")}', 'absent')">✕</button>
-      </div>
-    </div>`;
-  }
-  if (cur.walkins && cur.walkins.length > 0){
-    html += `<div style="margin-top:10px;padding-top:8px;border-top:1px dashed #d5dbdb"><div style="font-size:.78rem;color:#7f8c8d;font-weight:700;margin-bottom:6px">飛び込み参加（${cur.walkins.length}名）</div>`;
-    for (let i = 0; i < cur.walkins.length; i++){
-      html += `<div class="att-row">
-        <div class="att-name">🆕 ${cur.walkins[i]}</div>
-        <div class="att-btns">
-          <button class="att-btn absent" onclick="attRemoveWalkin(${i})" style="border-color:#e74c3c;color:#e74c3c">削除</button>
-        </div>
-      </div>`;
+    const row = attEl('div', 'att-row');
+    const name = attEl('div', 'att-name');
+    name.append(attEl('span', `grade-label gl${p.grade}`, `${p.grade}年`), document.createTextNode(p.name));
+    const buttons = attEl('div', 'att-btns');
+    for (const [type, label] of [['present', '⭕'], ['absent', '✕']]) {
+      const button = attButton(`att-btn ${type}`, label, () => attToggle(p.full, type));
+      button.dataset.on = st === type ? '1' : '0'; buttons.appendChild(button);
     }
-    html += `</div>`;
+    row.append(name, buttons); card.appendChild(row);
   }
-  html += `<div class="att-walkin-add">
-      <input type="text" id="att-walkin-input" placeholder="飛び込み参加者の名前">
-      <button onclick="attAddWalkin()">追加</button>
-    </div>
-    <div class="att-copy-bar">
-      <button id="att-copy-btn" onclick="attCopyLine(this)">📋 LINE用にコピー</button>
-      <button class="att-reset" onclick="attReset()">リセット</button>
-    </div>
-  </div>`;
-  document.getElementById('att-card-container').innerHTML = html;
+  if (cur.walkins && cur.walkins.length > 0) {
+    const walkins = attEl('div');
+    walkins.style.cssText = 'margin-top:10px;padding-top:8px;border-top:1px dashed #d5dbdb';
+    const title = attEl('div', '', `飛び込み参加（${cur.walkins.length}名）`);
+    title.style.cssText = 'font-size:.78rem;color:#7f8c8d;font-weight:700;margin-bottom:6px';
+    walkins.appendChild(title);
+    cur.walkins.forEach((name, i) => {
+      const row = attEl('div', 'att-row');
+      const buttons = attEl('div', 'att-btns');
+      const remove = attButton('att-btn absent', '削除', () => attRemoveWalkin(i));
+      remove.style.cssText = 'border-color:#e74c3c;color:#e74c3c'; buttons.appendChild(remove);
+      row.append(attEl('div', 'att-name', `🆕 ${name}`), buttons); walkins.appendChild(row);
+    });
+    card.appendChild(walkins);
+  }
+  const add = attEl('div', 'att-walkin-add');
+  const input = attEl('input'); input.type = 'text'; input.id = 'att-walkin-input';
+  input.placeholder = '飛び込み参加者の名前';
+  add.append(input, attButton('', '追加', attAddWalkin)); card.appendChild(add);
+  const bar = attEl('div', 'att-copy-bar');
+  const copy = attButton('', '📋 LINE用にコピー', () => attCopyLine(copy)); copy.id = 'att-copy-btn';
+  bar.append(copy, attButton('att-reset', 'リセット', attReset)); card.appendChild(bar);
+  document.getElementById('att-card-container').replaceChildren(card);
 }
 
 function attToggle(name, type){
   const cur = attGetCurrent();
-  cur.status[name] = (cur.status[name] === type) ? '' : type;
+  Object.defineProperty(cur.status, name, {
+    value: cur.status[name] === type ? '' : type, writable: true, enumerable: true, configurable: true
+  });
   attSaveState();
   attRender();
 }
